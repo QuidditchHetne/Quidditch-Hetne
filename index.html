@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+
+  <title>HETNE | Quidditch</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- MENÚ PRINCIPAL -->
+  <header class="header">
+    <div class="logo">
+      <span>✦ HETNE ✦</span>
+      <h1>QUIDDITCH</h1>
+    </div>
+
+    <nav class="navbar">
+      <a href="#inicio">Inicio</a>
+      <a href="#equipos">Equipos</a>
+      <a href="#partido">Partido</a>
+      <a href="#entrenamiento">Entrenamiento</a>
+      <a href="#estadisticas">Estadísticas</a>
+      <a href="#administracion">Administración</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- INICIO -->
+    <section id="inicio" class="section">
+      <h2>Bienvenidos al Quidditch de HETNE</h2>
+      <p>
+        Cuatro casas. Un campeonato.
+        Una historia por escribir.
+      </p>
+
+      <h3>Reglamento oficial</h3>
+      <p>Próximamente se publicarán las reglas del campeonato.</p>
+
+      <h3>Organización</h3>
+      <p>Jude Caskey · Layla Nott Rosier · Adelaide Bleichröder</p>
+    </section>
+
+    <!-- EQUIPOS -->
+    <section id="equipos" class="section">
+      <h2>Equipos oficiales</h2>
+
+      <div class="teams">
+        <article class="team ravenclaw">
+          <h3>Ravenclaw</h3>
+        </article>
+
+        <article class="team gryffindor">
+          <h3>Gryffindor</h3>
+        </article>
+
+        <article class="team slytherin">
+          <h3>Slytherin</h3>
+        </article>
+
+        <article class="team hufflepuff">
+          <h3>Hufflepuff</h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- PARTIDO OFICIAL -->
+    <section id="partido" class="section">
+      <h2>Partido oficial</h2>
+      <p>Acceso exclusivo para jugadores convocados.</p>
+
+      <div id="acceso-partido">
+        <label for="jugador-id">ID del jugador</label>
+        <input
+          type="text"
+          id="jugador-id"
+          placeholder="Introduce tu ID"
+          autocomplete="off"
+        >
+
+        <button id="btn-acceso" type="button">
+          Acceder al partido
+        </button>
+
+        <p id="mensaje-acceso" role="status"></p>
+      </div>
+
+      <div id="zona-dado" hidden>
+        <h3 id="nombre-jugador">Jugador</h3>
+
+        <div id="dado-oficial">20</div>
+
+        <button id="btn-dado-oficial" type="button">
+          Lanzar dado
+        </button>
+
+        <p id="temporizador"></p>
+      </div>
+    </section>
+
+    <!-- ENTRENAMIENTO -->
+    <section id="entrenamiento" class="section">
+      <h2>Zona de entrenamiento</h2>
+      <p>Dado libre, sin registro ni límite de tiempo.</p>
+
+      <div id="dado-entrenamiento">20</div>
+
+      <button id="btn-entrenamiento" type="button">
+        Lanzar dado de entrenamiento
+      </button>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section id="estadisticas" class="section">
+      <h2>Resultados y estadísticas</h2>
+
+      <p>Los resultados se publicarán después de cada partido.</p>
+
+      <div class="resultados">
+        <h3>Último encuentro</h3>
+        <p>Próximamente</p>
+
+        <h3>Jugador MVP</h3>
+        <p>Por anunciar</p>
+
+        <h3>Menciones honoríficas</h3>
+        <p>Por anunciar</p>
+      </div>
+    </section>
+
+    <!-- ADMINISTRACIÓN -->
+    <section id="administracion" class="section">
+      <h2>Panel de administración</h2>
+
+      <p>
+        Acceso reservado para capitanes
+        y administradores autorizados.
+      </p>
+
+      <div id="panel-admin">
+        <p>El sistema administrativo se habilitará próximamente.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>✦ Colegio HETNE de Magia y Hechicería ✦</p>
+    <p>Campeonato oficial de Quidditch</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
