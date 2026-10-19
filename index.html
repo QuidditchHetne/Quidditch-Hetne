@@ -1,65 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
 <title>HETNE | Quidditch</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
 <style>
+
+/* COLORES OFICIALES */
+
 :root {
-  --bg: #07101c;
-  --panel: #0c1c2c;
-  --gold: #d9b778;
-  --light: #f7e5ba;
-  --text: #f7f0e5;
-  --muted: #b5bfcb;
-  --line: #b997584f;
+  --black: #090909;
+  --panel: #171718;
+  --white: #f5f1e9;
+  --gold: #c9aa75;
+  --muted: #bcb6ad;
+  --line: #ffffff35;
+
+  --gryffindor: #873943;
+  --ravenclaw: #345c91;
+  --hufflepuff: #c8a349;
+  --slytherin: #34684f;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse at top, #173149, #07101c 65%);
-  color: var(--text);
-  font-family: Georgia, serif;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
 }
 
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-button:disabled { opacity: .5; cursor: not-allowed; }
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* NAVEGACIÓN */
 
 header {
-  background: #06101bef;
-  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
+  background: #090909f5;
+  border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
 
 .top {
-  max-width: 1150px;
+  max-width: 1250px;
   margin: auto;
-  padding: 16px;
+  padding: 17px 22px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 15px;
+  align-items: center;
+  gap: 20px;
 }
 
 .brand {
-  color: var(--light);
+  font-family: Cinzel, serif;
   font-size: 22px;
+  font-weight: 800;
   letter-spacing: 2px;
+  color: var(--white);
 }
 
 .brand small {
   display: block;
-  color: var(--gold);
-  font: 10px system-ui;
+  font-size: 10px;
   letter-spacing: 3px;
+  color: var(--gold);
 }
 
 nav {
@@ -69,75 +107,342 @@ nav {
 }
 
 nav button {
-  background: none;
+  background: transparent;
   border: none;
+  border-bottom: 2px solid transparent;
   color: var(--muted);
+  font-family: Cinzel, serif;
+  font-size: 10px;
   padding: 10px;
-  font-size: 12px;
 }
 
-nav button.active,
-nav button:hover {
-  color: var(--light);
-  border-bottom: 1px solid var(--gold);
+nav button:hover,
+nav button.active {
+  color: var(--white);
+  border-bottom-color: var(--gold);
 }
+
+/* PÁGINAS */
 
 main {
-  max-width: 1150px;
+  max-width: 1250px;
   margin: auto;
-  padding: 25px 18px 70px;
+  padding: 24px 20px 75px;
 }
 
-.page { display: none; }
-.page.active { display: block; }
-
-.hero {
-  min-height: 380px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background:
-    linear-gradient(#07101b55, #07101cf5),
-    radial-gradient(ellipse at top, #32506a, #091625 75%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 35px 20px;
+.page {
+  display: none;
 }
 
-.eyebrow {
-  font: 11px system-ui;
-  letter-spacing: 3px;
-  color: var(--gold);
+.page.active {
+  display: block;
 }
 
-h1 {
-  font-size: clamp(42px, 8vw, 82px);
-  color: var(--light);
-  font-weight: normal;
-  letter-spacing: 4px;
-  margin: 15px 0;
-  text-shadow: 0 0 30px #c59b4a65;
+h1, h2, h3 {
+  font-family: Cinzel, Georgia, serif;
 }
 
 h2 {
-  color: var(--light);
-  font-size: clamp(28px, 4vw, 43px);
-  font-weight: normal;
+  font-size: clamp(29px, 5vw, 51px);
+  font-weight: 600;
+  margin: 18px 0;
 }
 
 h3 {
   color: var(--gold);
-  font-weight: normal;
+  font-size: 20px;
 }
 
 p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-.section-title { margin: 35px 0 18px; }
+.eyebrow {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.script {
+  font-family: Caveat, cursive;
+  font-size: 43px;
+  color: var(--gold);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* PORTADA EDITORIAL */
+
+.editorial-cover {
+  border: 1px solid #ffffff55;
+  background:
+    radial-gradient(
+      ellipse at 85% 5%,
+      #292327,
+      transparent 55%
+    ),
+    #0b0b0c;
+
+  padding: clamp(18px, 4vw, 48px);
+  overflow: hidden;
+  position: relative;
+}
+
+.cover-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.cover-number {
+  border: 1px solid var(--gold);
+  padding: 8px 12px;
+  color: var(--gold);
+}
+
+.cover-title {
+  margin-top: 40px;
+}
+
+.cover-title .the {
+  display: block;
+  font-size: clamp(40px, 8vw, 100px);
+  font-style: italic;
+  line-height: .7;
+}
+
+.cover-title h1 {
+  font-size: clamp(38px, 9.3vw, 125px);
+  line-height: 1;
+  letter-spacing: -5px;
+  font-weight: 800;
+  margin: 15px 0;
+  overflow-wrap: anywhere;
+}
+
+.cover-script {
+  font-family: Caveat, cursive;
+  font-size: clamp(43px, 8vw, 90px);
+  text-align: right;
+  transform: rotate(-5deg);
+  color: var(--gold);
+  margin-top: -20px;
+  margin-right: 7%;
+}
+
+/* COLORES DE LAS CASAS */
+
+.house-stripes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin: 28px 0;
+}
+
+.house-stripes span {
+  height: 9px;
+}
+
+.stripe-g { background: var(--gryffindor); }
+.stripe-r { background: var(--ravenclaw); }
+.stripe-h { background: var(--hufflepuff); }
+.stripe-s { background: var(--slytherin); }
+
+/* TITULAR DE PORTADA */
+
+.cover-intro {
+  border-top: 1px solid var(--line);
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.cover-intro p {
+  font-family: Cinzel, serif;
+  font-weight: 700;
+  font-size: clamp(24px, 4vw, 48px);
+  line-height: 1.15;
+  color: white;
+  margin: 0;
+}
+
+.cover-intro em {
+  font-family: Caveat, cursive;
+  font-size: clamp(36px, 6vw, 72px);
+  color: var(--gold);
+  font-style: normal;
+}
+
+.cover-stamp {
+  width: 110px;
+  height: 110px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  transform: rotate(12deg);
+  color: var(--gold);
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* COLLAGE DE SECCIONES */
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 190px 190px;
+  gap: 10px;
+}
+
+.feature {
+  border: 1px solid #ffffff75;
+  color: white;
+  text-align: left;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s, filter .2s;
+}
+
+.feature:hover {
+  transform: scale(1.015);
+  filter: brightness(1.2);
+}
+
+.feature strong {
+  font-family: Cinzel, serif;
+  font-size: clamp(25px, 3.8vw, 48px);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-index {
+  font-family: Cinzel, serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-note {
+  font-family: Caveat, cursive;
+  font-size: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-symbol {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 100px;
+  opacity: .12;
+}
+
+.feature-large {
+  grid-row: span 2;
+  background:
+    linear-gradient(145deg, #25466c, #101a2b);
+}
+
+.feature-match {
+  background:
+    linear-gradient(145deg, #793039, #271419);
+}
+
+.feature-train {
+  background:
+    linear-gradient(145deg, #80672d, #2c2414);
+}
+
+.feature-stats {
+  background:
+    linear-gradient(145deg, #285d45, #11251c);
+}
+
+/* PIE DE PORTADA */
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
+
+.editorial-lower {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 55px 5px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lower-quote {
+  font-size: clamp(34px, 5vw, 65px);
+  line-height: 1;
+  font-style: italic;
+  text-align: right;
+}
+
+.lower-quote span {
+  color: var(--gold);
+}
+
+/* ARCHIVO TEMPORADA ANTERIOR */
+
+.archive {
+  margin: 45px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 30px 0;
+}
+
+.archive-slots {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.archive-slots div {
+  min-height: 155px;
+  border: 1px dashed #ffffff55;
+  background: #181819;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-family: Cinzel, serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #999;
+}
+
+/* COMPONENTES GENERALES */
 
 .grid {
   display: grid;
@@ -146,68 +451,147 @@ p {
 }
 
 .panel {
-  background: linear-gradient(145deg, #10263a, #081421);
+  background: linear-gradient(145deg, #202021, #101011);
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 23px;
+  padding: 25px;
 }
 
-.wide { grid-column: 1 / -1; }
-.center { text-align: center; }
+.wide {
+  grid-column: 1 / -1;
+}
 
-.team {
-  min-height: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.center {
   text-align: center;
 }
 
-.team h3 {
-  font-size: 28px;
-  color: white;
-}
-
-.ravenclaw { background: linear-gradient(130deg,#214a78,#0a1b32); }
-.gryffindor { background: linear-gradient(130deg,#7b3033,#261018); }
-.slytherin { background: linear-gradient(130deg,#1e6047,#0a201a); }
-.hufflepuff { background: linear-gradient(130deg,#806b29,#29200c); }
-
 .btn {
-  background: linear-gradient(120deg,#f2d69c,#bb8e45);
-  border: 1px solid #f3d79d;
-  border-radius: 6px;
+  background: linear-gradient(135deg, #f1dfbd, #c6a05a);
+  color: #151515;
+  border: 1px solid var(--gold);
   padding: 13px 22px;
-  color: #211b15;
-  font-weight: bold;
-  margin: 8px 0;
+  font-family: Cinzel, serif;
+  font-weight: 700;
+  font-size: 12px;
+  margin: 10px 4px;
 }
 
 .btn.secondary {
   background: transparent;
-  color: var(--light);
-  border-color: var(--gold);
+  color: var(--gold);
 }
 
-label {
-  display: block;
-  margin: 14px 0 7px;
-  color: var(--light);
+.notice {
+  padding: 14px;
+  background: #1b1917;
+  border-left: 3px solid var(--gold);
+  font-size: 17px;
 }
 
-input, select {
-  width: 100%;
-  padding: 12px;
-  background: #061321;
-  color: white;
+.status {
+  min-height: 25px;
+  color: var(--gold);
+}
+
+.pill {
+  display: inline-block;
   border: 1px solid var(--gold);
-  border-radius: 6px;
+  padding: 9px 13px;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  color: var(--gold);
 }
 
-.form {
-  max-width: 500px;
-  margin: auto;
+.paper {
+  background: #eee0c5;
+  color: #211b15;
+  padding: 25px;
 }
+
+.paper h3,
+.paper p {
+  color: #211b15;
+}
+
+/* EQUIPOS */
+
+.team {
+  min-height: 155px;
+  border: 1px solid #ffffff70;
+  padding: 22px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  transition: transform .2s;
+}
+
+.team:hover {
+  transform: translateY(-3px);
+}
+
+.team.selected {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.team strong {
+  font-family: Cinzel, serif;
+  font-size: 23px;
+}
+
+.team span {
+  font-family: Caveat, cursive;
+  font-size: 25px;
+}
+
+.ravenclaw {
+  background: linear-gradient(135deg, #315b8d, #101b30);
+}
+
+.gryffindor {
+  background: linear-gradient(135deg, #883b42, #291419);
+}
+
+.hufflepuff {
+  background: linear-gradient(135deg, #a78936, #302613);
+}
+
+.slytherin {
+  background: linear-gradient(135deg, #326b50, #10271c);
+}
+
+.roster-card {
+  margin-top: 20px;
+}
+
+.player-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.player {
+  background: #111112;
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.player strong {
+  display: block;
+  font-size: 23px;
+}
+
+.player small {
+  display: block;
+  color: var(--gold);
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+/* DADOS */
 
 .die {
   width: 150px;
@@ -219,88 +603,119 @@ input, select {
     50% 0%, 91% 22%, 100% 68%,
     68% 100%, 20% 91%, 0 48%, 15% 14%
   );
-  background: linear-gradient(135deg,#f6e2b3,#b68b46);
+  background: linear-gradient(135deg, #f6e2b3, #b68b46);
   color: #251c12;
+  font-family: Cinzel, serif;
   font-size: 65px;
-  filter: drop-shadow(0 0 18px #d8ac5b77);
 }
 
 .die.training {
-  background: linear-gradient(135deg,#b5f3eb,#3b9f9e);
-  filter: drop-shadow(0 0 18px #5bc8c077);
+  background: linear-gradient(135deg, #f5e4bf, #c5a66b);
 }
 
-.die.rolling { animation: spin .5s ease-in-out; }
+.die.rolling {
+  animation: spin .5s ease-in-out;
+}
 
 @keyframes spin {
-  50% { transform: rotate(16deg) scale(.88); }
+  50% {
+    transform: rotate(16deg) scale(.88);
+  }
 }
-
-.pill {
-  display: inline-block;
-  padding: 7px 12px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  color: var(--gold);
-  font-size: 13px;
-}
-
-.hidden { display: none !important; }
-
-.notice {
-  padding: 12px;
-  border-left: 2px solid var(--gold);
-  background: #091827;
-  font-size: 13px;
-}
-
-.status {
-  color: var(--gold);
-  min-height: 24px;
-}
-
-.log {
-  max-height: 350px;
-  overflow-y: auto;
-}
-
-.entry {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.admin-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.admin-row select { max-width: 160px; }
 
 footer {
   text-align: center;
-  padding: 30px;
+  padding: 35px 15px;
   border-top: 1px solid var(--line);
-  color: var(--muted);
+  font-family: Cinzel, serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gold);
 }
 
-@media(max-width:780px) {
-  .top { display: block; text-align: center; }
-  nav { justify-content: center; margin-top: 12px; }
-  nav button { font-size: 11px; padding: 8px; }
-  .grid { grid-template-columns: 1fr; }
-  .panel { padding: 18px; }
-  .hero { min-height: 310px; }
+footer p {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0;
 }
 
-@media(prefers-reduced-motion:reduce) {
-  * { animation: none !important; }
+/* MÓVILES */
+
+@media(max-width: 800px) {
+
+  .top {
+    display: block;
+    text-align: center;
+  }
+
+  nav {
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  nav button {
+    font-size: 9px;
+    padding: 8px 6px;
+  }
+
+  .grid,
+  .player-list,
+  .editorial-lower {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+
+  .feature {
+    min-height: 185px;
+  }
+
+  .feature-large {
+    grid-row: auto;
+    grid-column: span 2;
+    min-height: 230px;
+  }
+
+  .feature strong {
+    font-size: clamp(24px, 6vw, 42px);
+  }
+
+  .cover-title h1 {
+    letter-spacing: -2px;
+  }
+
+  .cover-stamp {
+    width: 80px;
+    height: 80px;
+    font-size: 9px;
+  }
+
+  .lower-quote {
+    text-align: left;
+  }
+
+  .archive-slots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .archive-slots div {
+    min-height: 110px;
+  }
+
+  .wide {
+    grid-column: auto;
+  }
 }
+
+@media(prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 </style>
 </head>
 
@@ -308,6 +723,7 @@ footer {
 
 <header>
   <div class="top">
+
     <div class="brand">
       ✦ QUIDDITCH
       <small>COLEGIO HETNE</small>
@@ -321,179 +737,360 @@ footer {
       <button data-page="estadisticas">Estadísticas</button>
       <button data-page="administracion">Administración</button>
     </nav>
+
   </div>
 </header>
 
 <main>
 
-<!-- INICIO -->
+<!-- ================= INICIO ================= -->
+
 <section id="inicio" class="page active">
-  <div class="hero">
-    <div class="eyebrow">COLEGIO HETNE DE MAGIA Y HECHICERÍA</div>
-    <h1>QUIDDITCH</h1>
-    <p>Cuatro casas. Un campeonato. Una historia por escribir.</p>
-    <button class="btn" data-go="partido">
-      Entrar al partido ↗
-    </button>
+
+  <div class="editorial-cover">
+
+    <div class="cover-head">
+      <span>COLEGIO HETNE · CAMPEONATO OFICIAL</span>
+      <span class="cover-number">N.º 01 / QUIDDITCH</span>
+    </div>
+
+    <div class="cover-title">
+      <span class="the">THE</span>
+      <h1>QUIDDITCH</h1>
+      <div class="cover-script">season.</div>
+    </div>
+
+    <div class="house-stripes">
+      <span class="stripe-g"></span>
+      <span class="stripe-r"></span>
+      <span class="stripe-h"></span>
+      <span class="stripe-s"></span>
+    </div>
+
+    <div class="cover-intro">
+
+      <p>
+        CUATRO CASAS.<br>
+        UNA COPA.<br>
+        <em>UNA HISTORIA.</em>
+      </p>
+
+      <div class="cover-stamp">
+        ✦<br>
+        HETNE<br>
+        ATHLETICS<br>
+        ✦
+      </div>
+
+    </div>
+
+    <!-- COLLAGE DE SECCIONES -->
+
+    <div class="editorial-grid">
+
+      <button class="feature feature-large" data-go="equipos">
+        <span class="feature-index">01 / TEAM ROSTERS</span>
+        <span class="feature-symbol">♜</span>
+        <strong>THE<br>TEAMS</strong>
+        <span class="feature-note">Conoce a las cuatro casas ↗</span>
+      </button>
+
+      <button class="feature feature-match" data-go="partido">
+        <span class="feature-index">02 / MATCH DAY</span>
+        <span class="feature-symbol">✦</span>
+        <strong>GAME<br>DAY</strong>
+        <span class="feature-note">El campo de juego ↗</span>
+      </button>
+
+      <button class="feature feature-train" data-go="entrenamiento">
+        <span class="feature-index">03 / PRACTICE</span>
+        <span class="feature-symbol">✧</span>
+        <strong>TRAINING<br>CLUB</strong>
+        <span class="feature-note">Practica con el D20 ↗</span>
+      </button>
+
+      <button class="feature feature-stats" data-go="estadisticas">
+        <span class="feature-index">04 / SCOREBOARD</span>
+        <span class="feature-symbol">★</span>
+        <strong>THE<br>RECORD</strong>
+        <span class="feature-note">Resultados y estadísticas ↗</span>
+      </button>
+
+    </div>
+
+    <div class="cover-bottom">
+      <span>
+        GRYFFINDOR · RAVENCLAW · HUFFLEPUFF · SLYTHERIN
+      </span>
+      <span>EST. HETNE ✦</span>
+    </div>
+
   </div>
 
-  <h2 class="section-title">Bienvenidos al campeonato</h2>
+  <div class="editorial-lower">
+
+    <div>
+      <div class="eyebrow">FROM THE SIDELINES</div>
+      <h2>Más que un juego.</h2>
+
+      <p>
+        Cuatro casas, un mismo campo y una temporada
+        por escribir. Descubre las plantillas, entrena
+        y sigue las crónicas del campeonato.
+      </p>
+    </div>
+
+    <div class="lower-quote">
+      “One field.<br>
+      Four houses.<br>
+      <span>Endless stories.</span>”
+    </div>
+
+  </div>
+
+  <!-- ARCHIVO FOTOGRÁFICO -->
+
+  <div class="archive">
+
+    <div class="eyebrow">
+      THE ARCHIVES · TEMPORADA ANTERIOR
+    </div>
+
+    <h2>Previously on the pitch</h2>
+
+    <p>
+      Archivo fotográfico de la temporada anterior.
+      Próximamente, los mejores momentos del campeonato.
+    </p>
+
+    <div class="archive-slots">
+      <div>ARCHIVE<br>01</div>
+      <div>ARCHIVE<br>02</div>
+      <div>ARCHIVE<br>03</div>
+    </div>
+
+  </div>
 
   <div class="grid">
+
     <article class="panel">
-      <h3>Reglamento oficial</h3>
-      <p>El reglamento se publicará cuando sea aprobado.</p>
+      <h3>✦ Reglamento oficial</h3>
+      <p>
+        El reglamento se publicará cuando sea aprobado.
+      </p>
     </article>
 
     <article class="panel">
-      <h3>Próximo encuentro</h3>
+      <h3>✦ Próximo encuentro</h3>
       <p>Por anunciar.</p>
     </article>
 
     <article class="panel wide">
-      <h3>Organización</h3>
-      <p>Jude Caskey · Layla Nott Rosier · Adelaide Bleichröder</p>
+      <h3>✦ Organización</h3>
+
+      <p>
+        Jude Caskey · Layla Nott Rosier ·
+        Adelaide Bleichröder
+      </p>
     </article>
+
   </div>
+
 </section>
 
-<!-- EQUIPOS -->
+<!-- ================= EQUIPOS ================= -->
+
 <section id="equipos" class="page">
-  <h2>Las cuatro casas</h2>
-  <p>Equipos oficiales del campeonato.</p>
+
+  <div class="eyebrow">
+    CAMPEONATO DE LAS CUATRO CASAS
+  </div>
+
+  <h2>THE TEAMS</h2>
+
+  <p>
+    Selecciona una casa para consultar su plantilla
+    oficial de Quidditch.
+  </p>
 
   <div class="grid">
-    <article class="panel team ravenclaw">
-      <h3>Ravenclaw</h3>
-    </article>
-    <article class="panel team gryffindor">
-      <h3>Gryffindor</h3>
-    </article>
-    <article class="panel team slytherin">
-      <h3>Slytherin</h3>
-    </article>
-    <article class="panel team hufflepuff">
-      <h3>Hufflepuff</h3>
-    </article>
-  </div>
-</section>
 
-<!-- PARTIDO -->
-<section id="partido" class="page">
-  <h2>Partido oficial</h2>
-  <p>Acceso exclusivo para jugadores convocados.</p>
-
-  <div id="match-login" class="panel form">
-    <h3>Identificación del jugador</h3>
-
-    <label for="player-id">ID del jugador</label>
-    <input id="player-id" placeholder="Introduce tu ID">
-
-    <button class="btn" id="enter-match">
-      Desbloquear partido
+    <button class="team ravenclaw" data-house="ravenclaw">
+      <strong>✦ Ravenclaw</strong>
+      <span>Sabiduría y estrategia</span>
     </button>
 
-    <p id="login-status" class="status"></p>
+    <button class="team gryffindor" data-house="gryffindor">
+      <strong>✦ Gryffindor</strong>
+      <span>Valor y determinación</span>
+    </button>
 
-    <p class="notice">
-      DEMOSTRACIÓN: utiliza el ID hhh.
-      La seguridad compartida todavía no está activa.
-    </p>
+    <button class="team slytherin" data-house="slytherin">
+      <strong>✦ Slytherin</strong>
+      <span>Ambición y astucia</span>
+    </button>
+
+    <button class="team hufflepuff" data-house="hufflepuff">
+      <strong>✦ Hufflepuff</strong>
+      <span>Lealtad y perseverancia</span>
+    </button>
+
   </div>
 
-  <div id="match-play" class="hidden">
-    <div class="grid">
+  <div id="roster-panel" class="panel hidden"
+       style="margin-top:20px">
 
-      <div class="panel center">
-        <span class="pill" id="player-info">
-          Jugador de prueba
-        </span>
+    <h3 id="roster-title">Plantilla oficial</h3>
 
-        <div class="die" id="match-die">20</div>
+    <p id="roster-count"></p>
 
-        <button class="btn" id="match-roll">
-          Lanzar D20
-        </button>
+    <div id="players-list" class="player-list"></div>
 
-        <p id="cooldown">Dado disponible</p>
-
-        <button class="btn secondary" id="leave-match">
-          Cerrar vista
-        </button>
-      </div>
-
-      <div class="panel">
-        <h3>Historial de tiradas</h3>
-        <div id="match-history" class="log"></div>
-      </div>
-
-    </div>
   </div>
+
+  <p id="teams-status" class="status" role="status">
+    Consultando jugadores...
+  </p>
+
+  <button class="btn secondary" id="refresh-players">
+    Actualizar plantillas
+  </button>
+
 </section>
 
-<!-- ENTRENAMIENTO -->
-<section id="entrenamiento" class="page">
-  <h2>Zona de entrenamiento</h2>
-  <p>Dado libre sin registro ni límite de tiempo.</p>
+<!-- ================= PARTIDO ================= -->
+
+<section id="partido" class="page">
+
+  <div class="eyebrow">MATCH DAY</div>
+
+  <h2>PARTIDO OFICIAL</h2>
+
+  <p>
+    El campo de juego está reservado para los
+    jugadores convocados.
+  </p>
 
   <div class="panel center">
-    <span class="pill">DADO DE ENTRENAMIENTO · D20</span>
 
-    <div class="die training" id="training-die">20</div>
+    <span class="pill">
+      PENDIENTE DE ACTIVACIÓN
+    </span>
+
+    <div class="die">20</div>
+
+    <h3>Dado oficial D20</h3>
+
+    <p>
+      El dado oficial se habilitará cuando estén
+      configurados los permisos de los jugadores,
+      las convocatorias y el bloqueo de tres minutos
+      desde Supabase.
+    </p>
+
+    <button class="btn" disabled>
+      Lanzar dado oficial
+    </button>
+
+    <p class="notice">
+      Por seguridad, todavía no se registran tiradas
+      oficiales. El ID de jugador no funciona como
+      contraseña.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- ================= ENTRENAMIENTO ================= -->
+
+<section id="entrenamiento" class="page">
+
+  <div class="eyebrow">PRACTICE CLUB</div>
+
+  <h2>TRAINING CLUB</h2>
+
+  <p>
+    Practica con el dado D20 todas las veces que quieras.
+    No necesitas un ID.
+  </p>
+
+  <div class="panel center">
+
+    <span class="pill">
+      DADO DE ENTRENAMIENTO · D20
+    </span>
+
+    <div class="die training" id="training-die">
+      20
+    </div>
 
     <button class="btn" id="training-roll">
       Lanzar dado
     </button>
 
-    <p id="training-result">
+    <p id="training-result" role="status">
       Practica tantas veces como quieras.
     </p>
+
   </div>
+
 </section>
 
-<!-- ESTADÍSTICAS -->
+<!-- ================= ESTADÍSTICAS ================= -->
+
 <section id="estadisticas" class="page">
-  <h2>Resultados y estadísticas</h2>
+
+  <div class="eyebrow">THE RECORD</div>
+
+  <h2>RESULTADOS Y ESTADÍSTICAS</h2>
 
   <div class="grid">
-    <div class="panel">
+
+    <article class="paper">
       <h3>Último partido</h3>
       <p>Sin resultados publicados.</p>
-    </div>
+    </article>
 
-    <div class="panel">
+    <article class="paper">
       <h3>Jugador MVP</h3>
       <p>Por anunciar.</p>
-    </div>
+    </article>
 
-    <div class="panel wide">
+    <article class="paper wide">
       <h3>Menciones honoríficas</h3>
       <p>Por anunciar.</p>
-    </div>
+    </article>
+
   </div>
+
 </section>
 
-<!-- ADMINISTRACIÓN -->
+<!-- ================= ADMINISTRACIÓN ================= -->
+
 <section id="administracion" class="page">
-  <h2>Administración</h2>
-  <p>Convocatorias y suplencias.</p>
+
+  <div class="eyebrow">OFFICIAL MANAGEMENT</div>
+
+  <h2>ADMINISTRACIÓN</h2>
 
   <div class="panel">
-    <h3>Convocatoria de ejemplo · Ravenclaw</h3>
 
-    <div id="admin-roster"></div>
+    <h3>Convocatorias y suplencias</h3>
 
-    <p id="roster-status" class="status"></p>
-
-    <button class="btn secondary" id="reset-roster">
-      Restablecer ejemplo
-    </button>
+    <p>
+      Esta sección estará disponible para los
+      organizadores cuando se configure un inicio
+      de sesión con permisos administrativos.
+    </p>
 
     <p class="notice">
-      Este panel es una demostración.
-      No concede permisos reales.
+      La administración pública no puede modificar
+      jugadores, partidos ni resultados.
     </p>
+
   </div>
+
 </section>
 
 </main>
@@ -503,14 +1100,13 @@ footer {
   <p>Campeonato oficial de Quidditch</p>
 </footer>
 
-<!-- SUPABASE: BIBLIOTECA OFICIAL -->
+<!-- CONEXIÓN A SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 (() => {
   "use strict";
-
-  // CONEXIÓN A SUPABASE
 
   const SUPABASE_URL =
     "https://trlrxuyevuyiacbjbjob.supabase.co";
@@ -518,30 +1114,47 @@ footer {
   const SUPABASE_KEY =
     "sb_publishable_tKAKjuJzCBkDoWP7RUoLgg_jhNlIfBy";
 
-  let db = null;
-
-  if (window.supabase &&
-      typeof window.supabase.createClient === "function") {
-    db = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-    console.log("Cliente Supabase inicializado.");
-  } else {
-    console.warn(
-      "No se pudo cargar la biblioteca de Supabase."
-    );
-  }
-
   const $ = id => document.getElementById(id);
+
+  let db = null;
+  let players = [];
+  let selectedHouse = null;
+
+  const houseNames = {
+    ravenclaw: "Ravenclaw",
+    gryffindor: "Gryffindor",
+    slytherin: "Slytherin",
+    hufflepuff: "Hufflepuff"
+  };
+
+  // INICIAR SUPABASE
+
+  try {
+    if (window.supabase &&
+        typeof window.supabase.createClient === "function") {
+
+      db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+      console.log("Supabase inicializado.");
+
+    } else {
+      throw new Error("Biblioteca Supabase no disponible.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 
   // NAVEGACIÓN
 
   function showPage(name) {
-    document.querySelectorAll(".page").forEach(section => {
-      section.classList.toggle(
+
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.toggle(
         "active",
-        section.id === name
+        page.id === name
       );
     });
 
@@ -553,6 +1166,10 @@ footer {
     });
 
     window.scrollTo(0, 0);
+
+    if (name === "equipos" && db && players.length === 0) {
+      loadPlayers();
+    }
   }
 
   document.querySelectorAll("[data-page]").forEach(button => {
@@ -567,44 +1184,157 @@ footer {
     });
   });
 
-  // ALMACENAMIENTO LOCAL DE DEMOSTRACIÓN
+  // MOSTRAR PLANTILLAS
 
-  const KEY = "hetne-quidditch-demo-v1";
+  function renderPlayers() {
 
-  let store = {
-    last: 0,
-    rolls: [],
-    sessionStart: 0
-  };
+    const panel = $("roster-panel");
+    const list = $("players-list");
 
-  try {
-    const saved = JSON.parse(localStorage.getItem(KEY));
+    document.querySelectorAll("[data-house]").forEach(button => {
+      button.classList.toggle(
+        "selected",
+        button.dataset.house === selectedHouse
+      );
+    });
 
-    if (saved && Array.isArray(saved.rolls)) {
-      store = { ...store, ...saved };
+    if (!selectedHouse) {
+      panel.classList.add("hidden");
+      return;
     }
-  } catch (error) {
-    console.warn("No se recuperaron los datos.");
+
+    panel.classList.remove("hidden");
+
+    $("roster-title").textContent =
+      "✦ Plantilla de " + houseNames[selectedHouse];
+
+    list.replaceChildren();
+
+    const roster = players
+      .filter(player => player.house_id === selectedHouse)
+      .sort((a, b) =>
+        String(a.player_code).localeCompare(
+          String(b.player_code)
+        )
+      );
+
+    $("roster-count").textContent =
+      roster.length + " jugador(es) registrado(s)";
+
+    if (roster.length === 0) {
+
+      const message = document.createElement("p");
+
+      message.textContent =
+        "Todavía no hay jugadores registrados en esta casa.";
+
+      list.appendChild(message);
+      return;
+    }
+
+    roster.forEach(player => {
+
+      const card = document.createElement("article");
+      card.className = "player";
+
+      const name = document.createElement("strong");
+      name.textContent = player.full_name || "Sin nombre";
+
+      const code = document.createElement("small");
+      code.textContent = player.player_code || "Sin ID";
+
+      const detail = document.createElement("p");
+
+      const number =
+        player.jersey_number == null
+          ? ""
+          : " · #" + player.jersey_number;
+
+      detail.textContent =
+        (player.position || "Posición pendiente") + number;
+
+      card.append(name, code, detail);
+      list.appendChild(card);
+    });
   }
 
-  function save() {
+  // CONSULTAR JUGADORES REALES
+
+  async function loadPlayers() {
+
+    if (!db) {
+      $("teams-status").textContent =
+        "No se pudo conectar con Supabase.";
+      return;
+    }
+
+    $("teams-status").textContent =
+      "Consultando plantillas oficiales...";
+
+    $("refresh-players").disabled = true;
+
     try {
-      localStorage.setItem(
-        KEY,
-        JSON.stringify(store)
+
+      const { data, error } = await db.rpc(
+        "get_public_players"
       );
+
+      if (error) {
+        throw error;
+      }
+
+      players = Array.isArray(data) ? data : [];
+
+      $("teams-status").textContent =
+        "✓ " + players.length +
+        " jugadores consultados desde Supabase.";
+
+      renderPlayers();
+
     } catch (error) {
-      console.warn(
-        "No se pudieron guardar los datos."
+
+      console.error(
+        "Error al consultar jugadores:",
+        error
       );
+
+      $("teams-status").textContent =
+        "No se pudieron cargar los jugadores. " +
+        "Comprueba los permisos de la función " +
+        "get_public_players en Supabase.";
+
+    } finally {
+
+      $("refresh-players").disabled = false;
     }
   }
 
-  // DADO D20
+  // SELECCIONAR CASA
+
+  document.querySelectorAll("[data-house]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      selectedHouse = button.dataset.house;
+
+      renderPlayers();
+
+    });
+  });
+
+  $("refresh-players").addEventListener(
+    "click",
+    loadPlayers
+  );
+
+  // DADO DE ENTRENAMIENTO
 
   function randomD20() {
+
     if (window.crypto && crypto.getRandomValues) {
+
       const values = new Uint32Array(1);
+
       const limit =
         Math.floor(4294967296 / 20) * 20;
 
@@ -618,258 +1348,27 @@ footer {
     return Math.floor(Math.random() * 20) + 1;
   }
 
-  function animateDie(element, result) {
-    element.classList.remove("rolling");
-
-    void element.offsetWidth;
-
-    element.textContent = result;
-    element.classList.add("rolling");
-
-    setTimeout(() => {
-      element.classList.remove("rolling");
-    }, 550);
-  }
-
-  // ENTRENAMIENTO
-
   $("training-roll").addEventListener("click", () => {
+
+    const die = $("training-die");
+
     const result = randomD20();
 
-    animateDie($("training-die"), result);
+    die.classList.remove("rolling");
+
+    void die.offsetWidth;
+
+    die.textContent = result;
+
+    die.classList.add("rolling");
 
     $("training-result").textContent =
       "Resultado: " + result;
   });
 
-  // PARTIDO OFICIAL - DEMOSTRACIÓN
+  // CARGAR DATOS AL INICIAR
 
-  let logged = false;
-
-  function displayHistory() {
-    const root = $("match-history");
-    root.replaceChildren();
-
-    if (store.rolls.length === 0) {
-      root.textContent =
-        "Todavía no hay tiradas.";
-      return;
-    }
-
-    store.rolls.slice(-25).reverse().forEach(roll => {
-      const entry = document.createElement("div");
-      entry.className = "entry";
-
-      const date = new Date(
-        roll.at
-      ).toLocaleString("es-ES");
-
-      entry.textContent =
-        "D20: " + roll.value +
-        " · " + date +
-        " · Jugador de prueba" +
-        " · Ravenclaw · Guardián #16";
-
-      root.appendChild(entry);
-    });
-  }
-
-  function logout(message = "") {
-    logged = false;
-
-    $("match-login").classList.remove("hidden");
-    $("match-play").classList.add("hidden");
-
-    $("login-status").textContent = message;
-  }
-
-  function tick() {
-    if (!logged) return;
-
-    const now = Date.now();
-
-    // SESIÓN DE UNA HORA
-    if (now - store.sessionStart >= 3600000) {
-      logout(
-        "La sesión de prueba ha caducado."
-      );
-      return;
-    }
-
-    // BLOQUEO DE TRES MINUTOS
-    const remaining = Math.max(
-      0,
-      180000 - (now - store.last)
-    );
-
-    $("match-roll").disabled = remaining > 0;
-
-    if (remaining > 0) {
-      const totalSeconds =
-        Math.ceil(remaining / 1000);
-
-      const minutes =
-        Math.floor(totalSeconds / 60);
-
-      const seconds =
-        totalSeconds % 60;
-
-      $("cooldown").textContent =
-        "Próxima tirada en " +
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(seconds).padStart(2, "0");
-    } else {
-      $("cooldown").textContent =
-        "Dado disponible";
-    }
-  }
-
-  $("enter-match").addEventListener("click", () => {
-    const id = $("player-id")
-      .value.trim().toLowerCase();
-
-    if (id !== "hhh") {
-      $("login-status").textContent =
-        "ID no reconocido en esta demostración.";
-      return;
-    }
-
-    logged = true;
-    store.sessionStart = Date.now();
-
-    save();
-
-    $("match-login").classList.add("hidden");
-    $("match-play").classList.remove("hidden");
-
-    $("player-info").textContent =
-      "Jugador de prueba · Ravenclaw · Guardián #16";
-
-    displayHistory();
-    tick();
-  });
-
-  $("match-roll").addEventListener("click", () => {
-    if (!logged) return;
-
-    const now = Date.now();
-
-    if (now - store.sessionStart >= 3600000) {
-      logout("La sesión ha caducado.");
-      return;
-    }
-
-    if (now - store.last < 180000) return;
-
-    const result = randomD20();
-
-    store.last = now;
-
-    store.rolls.push({
-      value: result,
-      at: now
-    });
-
-    save();
-
-    animateDie($("match-die"), result);
-    displayHistory();
-    tick();
-  });
-
-  $("leave-match").addEventListener("click", () => {
-    logout("Vista cerrada.");
-  });
-
-  setInterval(tick, 500);
-
-  // ADMINISTRACIÓN - DEMOSTRACIÓN
-
-  const roster = [
-    ["Jugador 01", "Guardián"],
-    ["Jugador 02", "Cazador"],
-    ["Jugador 03", "Cazador"],
-    ["Jugador 04", "Cazador"],
-    ["Jugador 05", "Golpeador"],
-    ["Jugador 06", "Golpeador"],
-    ["Jugador 07", "Buscador"],
-    ["Jugador 08", "Suplente"],
-    ["Jugador 09", "Suplente"]
-  ];
-
-  function validateRoster() {
-    const values = [
-      ...$("admin-roster").querySelectorAll("select")
-    ].map(select => select.value);
-
-    const titulares = values.filter(
-      value => value === "titular"
-    ).length;
-
-    const suplentes = values.filter(
-      value => value === "suplente"
-    ).length;
-
-    $("roster-status").textContent =
-      "Titulares: " + titulares + "/7" +
-      " · Suplentes: " + suplentes + "/2" +
-      (
-        titulares === 7 && suplentes <= 2
-          ? " · Convocatoria válida"
-          : " · Ajusta la convocatoria"
-      );
-  }
-
-  function drawRoster() {
-    const root = $("admin-roster");
-    root.replaceChildren();
-
-    roster.forEach(([name, position], index) => {
-      const row = document.createElement("div");
-      row.className = "admin-row";
-
-      const label = document.createElement("span");
-      label.textContent =
-        name + " · " + position;
-
-      const select = document.createElement("select");
-
-      [
-        ["titular", "Titular"],
-        ["suplente", "Suplente"],
-        ["fuera", "No convocado"]
-      ].forEach(([value, text]) => {
-        const option =
-          document.createElement("option");
-
-        option.value = value;
-        option.textContent = text;
-
-        select.appendChild(option);
-      });
-
-      select.value =
-        index < 7 ? "titular" : "suplente";
-
-      select.addEventListener(
-        "change",
-        validateRoster
-      );
-
-      row.append(label, select);
-      root.appendChild(row);
-    });
-
-    validateRoster();
-  }
-
-  $("reset-roster").addEventListener(
-    "click",
-    drawRoster
-  );
-
-  drawRoster();
+  loadPlayers();
 
 })();
 </script>
