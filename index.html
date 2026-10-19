@@ -23,10 +23,11 @@
   --ravenclaw: #345c91;
   --hufflepuff: #c8a349;
   --slytherin: #34684f;
+  --success: #8fcb9c;
+  --danger: #ef9a9a;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -37,13 +38,18 @@ body {
   font-size: 20px;
 }
 
-button, input { font: inherit; }
-button { cursor: pointer; }
-button:disabled { opacity: .5; cursor: not-allowed; }
+button, input, select {
+  font: inherit;
+}
 
-button:focus-visible {
+button { cursor: pointer; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--gold);
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
 header {
@@ -144,7 +150,11 @@ p {
 .editorial-cover {
   border: 1px solid #ffffff55;
   background:
-    radial-gradient(ellipse at 85% 5%, #292327, transparent 55%),
+    radial-gradient(
+      ellipse at 85% 5%,
+      #292327,
+      transparent 55%
+    ),
     #0b0b0c;
   padding: clamp(18px, 4vw, 48px);
   overflow: hidden;
@@ -391,6 +401,7 @@ p {
   background: linear-gradient(145deg, #202021, #101011);
   border: 1px solid var(--line);
   padding: 25px;
+  min-width: 0;
 }
 
 .wide { grid-column: 1 / -1; }
@@ -412,6 +423,12 @@ p {
   color: var(--gold);
 }
 
+.btn.danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
 .notice {
   padding: 14px;
   background: #1b1917;
@@ -422,6 +439,7 @@ p {
 .status {
   min-height: 25px;
   color: var(--gold);
+  overflow-wrap: anywhere;
 }
 
 .pill {
@@ -439,7 +457,10 @@ p {
   padding: 25px;
 }
 
-.paper h3, .paper p { color: #211b15; }
+.paper h3,
+.paper p {
+  color: #211b15;
+}
 
 /* EQUIPOS */
 
@@ -544,7 +565,86 @@ p {
   50% { transform: rotate(16deg) scale(.88); }
 }
 
-/* HISTORIAL */
+/* FORMULARIOS */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 13px 0;
+}
+
+.field label {
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  background: #101011;
+  border: 1px solid #ffffff55;
+  border-radius: 0;
+  color: var(--white);
+  font-size: 19px;
+}
+
+.field input::placeholder {
+  color: #9c968d;
+}
+
+.field select option {
+  background: #151515;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.match-card {
+  background: #111112;
+  border: 1px solid var(--line);
+  padding: 19px;
+  margin: 13px 0;
+}
+
+.match-card.selected {
+  border-color: var(--gold);
+}
+
+.match-versus {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.match-house {
+  font-family: Cinzel, serif;
+  font-size: clamp(12px, 2.5vw, 18px);
+  overflow-wrap: anywhere;
+}
+
+.match-score {
+  font-family: Cinzel, serif;
+  font-size: 32px;
+  color: var(--gold);
+}
+
+.match-meta {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  margin: 10px 0;
+}
 
 .log {
   max-height: 350px;
@@ -568,6 +668,42 @@ p {
   font-size: 10px;
   letter-spacing: 1px;
 }
+
+.table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+}
+
+th, td {
+  padding: 11px 9px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  color: var(--gold);
+}
+
+.paper th,
+.paper td {
+  border-bottom-color: #211b1530;
+}
+
+.paper th {
+  color: #65461e;
+}
+
+.good { color: var(--success); }
+.bad { color: var(--danger); }
 
 footer {
   text-align: center;
@@ -623,7 +759,9 @@ footer p {
     font-size: clamp(24px, 6vw, 42px);
   }
 
-  .cover-title h1 { letter-spacing: -2px; }
+  .cover-title h1 {
+    letter-spacing: -2px;
+  }
 
   .cover-stamp {
     width: 80px;
@@ -638,7 +776,19 @@ footer p {
   }
 
   .archive-slots div { min-height: 110px; }
+
   .wide { grid-column: auto; }
+}
+
+@media(max-width: 480px) {
+  main { padding: 17px 12px 55px; }
+  .panel { padding: 17px; }
+  .paper { padding: 17px; }
+  .form-row { grid-template-columns: 1fr; }
+  .cover-intro { align-items: flex-start; }
+  .cover-stamp { width: 67px; height: 67px; }
+  .match-score { font-size: 25px; }
+  .btn { padding: 12px 14px; }
 }
 
 @media(prefers-reduced-motion: reduce) {
@@ -784,6 +934,7 @@ footer p {
   </div>
 
   <div class="grid">
+
     <article class="panel">
       <h3>✦ Reglamento oficial</h3>
       <p>El reglamento se publicará cuando sea aprobado.</p>
@@ -791,13 +942,16 @@ footer p {
 
     <article class="panel">
       <h3>✦ Próximo encuentro</h3>
-      <p>Por anunciar.</p>
+      <div id="home-next-match">
+        <p>Consultando calendario...</p>
+      </div>
     </article>
 
     <article class="panel wide">
       <h3>✦ Organización</h3>
       <p>Jude Caskey · Layla Nott Rosier · Adelaide Bleichröder</p>
     </article>
+
   </div>
 
 </section>
@@ -805,6 +959,7 @@ footer p {
 <!-- EQUIPOS -->
 
 <section id="equipos" class="page">
+
   <div class="eyebrow">CAMPEONATO DE LAS CUATRO CASAS</div>
   <h2>THE TEAMS</h2>
 
@@ -814,6 +969,7 @@ footer p {
   </p>
 
   <div class="grid">
+
     <button class="team ravenclaw" data-house="ravenclaw">
       <strong>✦ Ravenclaw</strong>
       <span>Sabiduría y estrategia</span>
@@ -833,6 +989,7 @@ footer p {
       <strong>✦ Hufflepuff</strong>
       <span>Lealtad y perseverancia</span>
     </button>
+
   </div>
 
   <div id="roster-panel" class="panel hidden"
@@ -849,53 +1006,125 @@ footer p {
   <button class="btn secondary" id="refresh-players">
     Actualizar plantillas
   </button>
+
 </section>
 
-<!-- PARTIDO: SIMULACRO -->
+<!-- PARTIDO OFICIAL Y SIMULACRO REAL -->
 
 <section id="partido" class="page">
 
-  <div class="eyebrow">MATCH DAY · PRUEBA DE FUEGO</div>
-  <h2>PARTIDO · SIMULACRO</h2>
+  <div class="eyebrow">MATCH DAY · HETNE QUIDDITCH</div>
+  <h2>THE MATCH</h2>
 
   <p>
-    Prueba del dado D20 y su temporizador.
-    Los resultados no cuentan para el campeonato.
+    Partidos oficiales y simulacros registrados en Supabase.
+    El dado solo está disponible para jugadores
+    autenticados y autorizados.
   </p>
 
   <div class="grid">
 
+    <div class="panel wide">
+      <h3>✦ Encuentros</h3>
+      <p>
+        Selecciona un partido para ver su convocatoria,
+        marcador y tiradas.
+      </p>
+
+      <div id="matches-list">
+        <p>Consultando encuentros...</p>
+      </div>
+
+      <button class="btn secondary" id="refresh-matches">
+        Actualizar partidos
+      </button>
+
+      <p id="matches-status" class="status" role="status"></p>
+    </div>
+
+    <div class="panel wide hidden" id="selected-match-panel">
+
+      <div class="eyebrow">SELECTED MATCH</div>
+      <h3 id="selected-match-title">Partido seleccionado</h3>
+
+      <div id="selected-match-summary"></div>
+
+      <p id="selected-match-label"></p>
+
+      <div class="grid">
+
+        <div>
+          <h3>Convocatoria</h3>
+          <div id="match-roster-view">
+            <p>Consultando convocatoria...</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Historial de tiradas</h3>
+          <div id="match-history" class="log">
+            <p>Consultando tiradas...</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
     <div class="panel center">
 
-      <span class="test-label">
-        MODO SIMULACRO · NO OFICIAL
+      <span class="test-label" id="match-mode-label">
+        DADO OFICIAL · D20
       </span>
 
       <div class="die" id="match-die">20</div>
 
-      <button class="btn" id="match-roll">
-        Lanzar D20 · Simulacro
+      <button class="btn" id="match-roll" disabled>
+        Lanzar D20
       </button>
 
       <p id="match-cooldown" class="status" role="status">
-        Dado disponible
+        Selecciona un partido.
       </p>
 
       <p id="match-result" class="status" role="status"></p>
 
       <p class="notice">
-        Cada tirada bloquea este navegador durante
-        tres minutos. El simulacro no utiliza
-        IDs reales, convocatorias ni resultados
-        oficiales de Supabase.
+        Las tiradas oficiales se generan y guardan
+        en Supabase. El temporizador es de tres minutos
+        por jugador y partido.
       </p>
 
     </div>
 
     <div class="panel">
-      <h3>Historial del simulacro</h3>
-      <p>Últimas tiradas realizadas en este navegador.</p>
-      <div id="match-history" class="log"></div>
+
+      <h3>✦ Acceso del jugador</h3>
+
+      <p id="player-access-status">
+        Inicia sesión para activar tu acceso al dado.
+      </p>
+
+      <div id="player-session-controls" class="hidden">
+
+        <button class="btn" id="activate-session">
+          Activar sesión de juego
+        </button>
+
+        <p id="session-status" class="status"></p>
+
+      </div>
+
+      <p class="notice">
+        Tu ID oficial debe estar vinculado a tu cuenta
+        por la administración. Conocer un ID público
+        no concede permiso para lanzar.
+      </p>
+
+      <button class="btn secondary" data-go="administracion">
+        Ir al acceso de cuentas
+      </button>
+
     </div>
 
   </div>
@@ -905,15 +1134,17 @@ footer p {
 <!-- ENTRENAMIENTO -->
 
 <section id="entrenamiento" class="page">
+
   <div class="eyebrow">PRACTICE CLUB</div>
   <h2>TRAINING CLUB</h2>
 
   <p>
     Practica con el dado D20 todas las veces que quieras.
-    No necesitas un ID.
+    No necesitas una cuenta ni un ID.
   </p>
 
   <div class="panel center">
+
     <span class="pill">DADO DE ENTRENAMIENTO · D20</span>
 
     <div class="die training" id="training-die">20</div>
@@ -925,19 +1156,68 @@ footer p {
     <p id="training-result" role="status">
       Practica tantas veces como quieras.
     </p>
+
+    <p class="notice">
+      El entrenamiento no utiliza el dado oficial
+      y sus resultados no se registran en el campeonato.
+    </p>
+
   </div>
+
 </section>
 
 <!-- ESTADÍSTICAS -->
 
 <section id="estadisticas" class="page">
+
   <div class="eyebrow">THE RECORD</div>
   <h2>RESULTADOS Y ESTADÍSTICAS</h2>
 
   <div class="grid">
+
+    <article class="paper wide">
+
+      <h3>✦ Clasificación oficial</h3>
+
+      <p>
+        PJ: partidos jugados · G: victorias ·
+        E: empates · P: derrotas.
+      </p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Casa</th>
+              <th>PJ</th>
+              <th>G</th>
+              <th>E</th>
+              <th>P</th>
+              <th>PTS</th>
+            </tr>
+          </thead>
+
+          <tbody id="standings-body">
+            <tr>
+              <td colspan="6">Consultando clasificación...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        PTS corresponde únicamente a los puntos
+        de campeonato asignados por la administración.
+        No existen puntos extra por participación.
+      </p>
+
+    </article>
+
     <article class="paper">
-      <h3>Último partido</h3>
-      <p>Sin resultados publicados.</p>
+      <h3>Último partido oficial</h3>
+      <div id="latest-official-match">
+        <p>Sin resultados publicados.</p>
+      </div>
     </article>
 
     <article class="paper">
@@ -949,29 +1229,474 @@ footer p {
       <h3>Menciones honoríficas</h3>
       <p>Por anunciar.</p>
     </article>
+
   </div>
+
+  <p id="stats-status" class="status" role="status"></p>
+
+  <button class="btn secondary" id="refresh-stats">
+    Actualizar estadísticas
+  </button>
+
 </section>
 
-<!-- ADMINISTRACIÓN -->
+<!-- ADMINISTRACIÓN Y CUENTAS -->
 
 <section id="administracion" class="page">
+
   <div class="eyebrow">OFFICIAL MANAGEMENT</div>
   <h2>ADMINISTRACIÓN</h2>
 
-  <div class="panel">
-    <h3>Convocatorias y suplencias</h3>
+  <div class="grid">
 
-    <p>
-      Esta sección estará disponible para los
-      organizadores cuando se configure un inicio
-      de sesión con permisos administrativos.
-    </p>
+    <div class="panel">
+
+      <h3>✦ Iniciar sesión</h3>
+
+      <p>
+        Acceso para administradores y jugadores
+        con cuentas autorizadas.
+      </p>
+
+      <div id="login-box">
+
+        <form id="login-form">
+
+          <div class="field">
+            <label for="login-email">Correo electrónico</label>
+            <input
+              id="login-email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="correo@ejemplo.com"
+            >
+          </div>
+
+          <div class="field">
+            <label for="login-password">Contraseña</label>
+            <input
+              id="login-password"
+              type="password"
+              autocomplete="current-password"
+              required
+              placeholder="Tu contraseña"
+            >
+          </div>
+
+          <button class="btn" type="submit" id="login-button">
+            Iniciar sesión
+          </button>
+
+        </form>
+
+        <p class="notice">
+          Si eres jugador, solicita a la organización
+          la creación y vinculación de tu cuenta.
+        </p>
+
+      </div>
+
+      <div id="account-box" class="hidden">
+
+        <p id="account-email"></p>
+        <p id="account-role" class="status"></p>
+
+        <button class="btn secondary" id="logout-button">
+          Cerrar sesión
+        </button>
+
+      </div>
+
+      <p id="auth-status" class="status" role="status"></p>
+
+    </div>
+
+    <div class="panel">
+
+      <h3>✦ Estado del sistema</h3>
+
+      <p id="system-connection">
+        Comprobando Supabase...
+      </p>
+
+      <p id="system-user">
+        Sin sesión iniciada.
+      </p>
+
+      <p class="notice">
+        Los permisos se comprueban en Supabase.
+        Ocultar botones en la página no sustituye
+        las verificaciones del servidor.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div id="admin-panel" class="hidden">
+
+    <div class="eyebrow" style="margin-top:35px">
+      AUTHORIZED ORGANIZERS
+    </div>
+
+    <h2>CONTROL DEL CAMPEONATO</h2>
 
     <p class="notice">
-      La administración pública no puede modificar
-      jugadores, partidos ni resultados.
+      Panel exclusivo para las cuentas administrativas
+      de Layla y Jude.
     </p>
+
+    <div class="grid">
+
+      <!-- CREAR PARTIDO -->
+
+      <div class="panel">
+
+        <h3>01 · Crear encuentro</h3>
+
+        <form id="create-match-form">
+
+          <div class="field">
+            <label for="new-home">Casa local</label>
+            <select id="new-home" required>
+              <option value="ravenclaw">Ravenclaw</option>
+              <option value="gryffindor">Gryffindor</option>
+              <option value="hufflepuff">Hufflepuff</option>
+              <option value="slytherin">Slytherin</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="new-away">Casa visitante</label>
+            <select id="new-away" required>
+              <option value="slytherin">Slytherin</option>
+              <option value="ravenclaw">Ravenclaw</option>
+              <option value="gryffindor">Gryffindor</option>
+              <option value="hufflepuff">Hufflepuff</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="new-match-type">Tipo de encuentro</label>
+            <select id="new-match-type">
+              <option value="test">Simulacro · no oficial</option>
+              <option value="official">Partido oficial</option>
+            </select>
+          </div>
+
+          <button class="btn" type="submit">
+            Crear partido
+          </button>
+
+        </form>
+
+        <p id="create-match-status" class="status"></p>
+
+      </div>
+
+      <!-- SELECCIONAR PARTIDO -->
+
+      <div class="panel">
+
+        <h3>02 · Partido que vas a administrar</h3>
+
+        <div class="field">
+          <label for="admin-match-select">
+            Seleccionar encuentro
+          </label>
+          <select id="admin-match-select">
+            <option value="">No hay partido seleccionado</option>
+          </select>
+        </div>
+
+        <div id="admin-match-info">
+          <p>Selecciona un encuentro.</p>
+        </div>
+
+        <button class="btn secondary" id="admin-refresh">
+          Actualizar datos
+        </button>
+
+      </div>
+
+      <!-- CONVOCATORIA -->
+
+      <div class="panel">
+
+        <h3>03 · Convocar jugadores</h3>
+
+        <p>
+          Puedes convocar siete titulares y hasta
+          dos suplentes por casa antes de abrir
+          el encuentro.
+        </p>
+
+        <form id="roster-form">
+
+          <div class="field">
+            <label for="roster-player">
+              Jugador registrado
+            </label>
+            <select id="roster-player" required>
+              <option value="">Selecciona un jugador</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="roster-role">
+              Rol en el encuentro
+            </label>
+            <select id="roster-role">
+              <option value="titular">Titular</option>
+              <option value="suplente">Suplente</option>
+            </select>
+          </div>
+
+          <button class="btn" type="submit">
+            Guardar convocatoria
+          </button>
+
+        </form>
+
+        <p id="roster-admin-status" class="status"></p>
+
+      </div>
+
+      <!-- APERTURA Y CIERRE -->
+
+      <div class="panel">
+
+        <h3>04 · Control del encuentro</h3>
+
+        <p>
+          Para abrir un partido se necesitan
+          siete titulares válidos por casa.
+        </p>
+
+        <button class="btn" id="open-match">
+          Abrir partido
+        </button>
+
+        <button class="btn danger" id="close-match">
+          Cerrar partido
+        </button>
+
+        <p id="match-control-status" class="status"></p>
+
+      </div>
+
+      <!-- SUSTITUCIONES -->
+
+      <div class="panel">
+
+        <h3>05 · Aprobar sustitución</h3>
+
+        <p>
+          Solo se pueden aprobar sustituciones
+          durante un partido abierto.
+        </p>
+
+        <form id="substitution-form">
+
+          <div class="field">
+            <label for="sub-out">
+              Titular que sale
+            </label>
+            <select id="sub-out" required>
+              <option value="">Seleccionar titular</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sub-in">
+              Suplente que entra
+            </label>
+            <select id="sub-in" required>
+              <option value="">Seleccionar suplente</option>
+            </select>
+          </div>
+
+          <button class="btn" type="submit">
+            Aprobar sustitución
+          </button>
+
+        </form>
+
+        <p id="substitution-status" class="status"></p>
+
+      </div>
+
+      <!-- MARCADOR -->
+
+      <div class="panel">
+
+        <h3>06 · Marcador del partido</h3>
+
+        <p>
+          Registra los puntos conseguidos
+          por cada casa durante el encuentro.
+        </p>
+
+        <form id="score-form">
+
+          <div class="form-row">
+
+            <div class="field">
+              <label for="home-score">
+                Puntos casa local
+              </label>
+              <input
+                id="home-score"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="away-score">
+                Puntos casa visitante
+              </label>
+              <input
+                id="away-score"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                required
+              >
+            </div>
+
+          </div>
+
+          <button class="btn" type="submit">
+            Guardar marcador
+          </button>
+
+        </form>
+
+        <p class="notice">
+          Guarda el marcador antes de cerrar
+          el encuentro.
+        </p>
+
+        <p id="score-status" class="status"></p>
+
+      </div>
+
+      <!-- PUNTOS DEL CAMPEONATO -->
+
+      <div class="panel">
+
+        <h3>07 · Puntos del campeonato</h3>
+
+        <p>
+          Después de cerrar un partido oficial,
+          asigna los puntos que corresponden
+          a cada casa.
+        </p>
+
+        <form id="championship-form">
+
+          <div class="form-row">
+
+            <div class="field">
+              <label for="home-champ-points">
+                Puntos casa local
+              </label>
+              <input
+                id="home-champ-points"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="away-champ-points">
+                Puntos casa visitante
+              </label>
+              <input
+                id="away-champ-points"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                required
+              >
+            </div>
+
+          </div>
+
+          <button class="btn" type="submit">
+            Asignar puntos oficiales
+          </button>
+
+        </form>
+
+        <p class="notice">
+          El perdedor recibe cero puntos de campeonato.
+          Los simulacros no otorgan puntos.
+        </p>
+
+        <p id="championship-status" class="status"></p>
+
+      </div>
+
+      <!-- VINCULACIÓN -->
+
+      <div class="panel">
+
+        <h3>08 · Vincular cuenta de jugador</h3>
+
+        <p>
+          El jugador debe tener previamente una cuenta
+          creada en Supabase Authentication.
+        </p>
+
+        <form id="link-player-form">
+
+          <div class="field">
+            <label for="link-player-code">
+              ID oficial del jugador
+            </label>
+            <select id="link-player-code" required>
+              <option value="">Selecciona un jugador</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="link-player-email">
+              Correo de su cuenta
+            </label>
+            <input
+              id="link-player-email"
+              type="email"
+              autocomplete="off"
+              placeholder="jugador@ejemplo.com"
+              required
+            >
+          </div>
+
+          <button class="btn" type="submit">
+            Vincular cuenta
+          </button>
+
+        </form>
+
+        <p id="link-player-status" class="status"></p>
+
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
 </main>
@@ -980,8 +1705,6 @@ footer p {
   ✦ COLEGIO HETNE DE MAGIA Y HECHICERÍA ✦
   <p>Campeonato oficial de Quidditch</p>
 </footer>
-
-<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -997,18 +1720,131 @@ footer p {
 
   const $ = id => document.getElementById(id);
 
-  let db = null;
-  let players = [];
-  let selectedHouse = null;
-
-  const houseNames = {
+  const HOUSE_NAMES = {
     ravenclaw: "Ravenclaw",
     gryffindor: "Gryffindor",
     slytherin: "Slytherin",
     hufflepuff: "Hufflepuff"
   };
 
-  // CONEXIÓN A SUPABASE
+  let db = null;
+
+  let players = [];
+  let matches = [];
+  let standings = [];
+
+  let selectedHouse = null;
+  let selectedMatchId = null;
+  let selectedAdminMatchId = null;
+
+  let currentRoster = [];
+  let currentRolls = [];
+
+  let currentUser = null;
+  let isAdmin = false;
+
+  // La autorización se conserva solamente
+  // en la memoria de esta pestaña.
+  // No se guarda en localStorage.
+
+  let gameSessionToken = null;
+  let gameSessionExpires = null;
+
+  let nextRollAt = 0;
+  let rolling = false;
+  let authVersion = 0;
+
+  function nameOfHouse(id) {
+    return HOUSE_NAMES[id] || id || "Casa desconocida";
+  }
+
+  function setText(id, value) {
+    const element = $(id);
+    if (element) {
+      element.textContent = String(value ?? "");
+    }
+  }
+
+  function clear(element) {
+    element.replaceChildren();
+  }
+
+  function textNode(tag, value, className = "") {
+    const element = document.createElement(tag);
+    element.textContent = String(value ?? "");
+    if (className) element.className = className;
+    return element;
+  }
+
+  function formatDate(value) {
+    if (!value) return "Fecha por anunciar";
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return "Fecha por anunciar";
+    }
+
+    return date.toLocaleString("es-ES", {
+      dateStyle: "medium",
+      timeStyle: "short"
+    });
+  }
+
+  function matchStatusLabel(status) {
+    const labels = {
+      scheduled: "PROGRAMADO",
+      open: "EN JUEGO",
+      closed: "FINALIZADO"
+    };
+
+    return labels[status] || status;
+  }
+
+  function formatError(error) {
+    if (!error) return "Error desconocido.";
+
+    const message = error.message || String(error);
+
+    if (/invalid login credentials/i.test(message)) {
+      return "Correo o contraseña incorrectos.";
+    }
+
+    if (/email not confirmed/i.test(message)) {
+      return "Debes confirmar tu correo electrónico.";
+    }
+
+    return message;
+  }
+
+  async function rpc(name, params = {}) {
+    if (!db) {
+      throw new Error("Supabase no está disponible.");
+    }
+
+    const { data, error } = await db.rpc(name, params);
+
+    if (error) throw error;
+
+    return data;
+  }
+
+  async function runButton(button, action) {
+    if (button.disabled) return;
+
+    button.disabled = true;
+
+    try {
+      await action();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      button.disabled = false;
+      updateRollButton();
+    }
+  }
+
+  // SUPABASE
 
   try {
     if (
@@ -1017,13 +1853,28 @@ footer p {
     ) {
       db = window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_KEY
+        SUPABASE_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+      );
+
+      setText(
+        "system-connection",
+        "✓ Cliente Supabase inicializado."
       );
     } else {
-      throw new Error("Biblioteca Supabase no disponible.");
+      throw new Error(
+        "No se pudo cargar la biblioteca de Supabase."
+      );
     }
   } catch (error) {
-    console.error("Error de conexión:", error);
+    console.error(error);
+    setText("system-connection", formatError(error));
   }
 
   // NAVEGACIÓN
@@ -1045,8 +1896,12 @@ footer p {
 
     window.scrollTo(0, 0);
 
-    if (name === "equipos" && db && players.length === 0) {
-      loadPlayers();
+    if (name === "equipos") loadPlayers();
+    if (name === "partido") loadMatches();
+    if (name === "estadisticas") loadStandings();
+
+    if (name === "administracion" && isAdmin) {
+      populateAdminMatches();
     }
   }
 
@@ -1062,7 +1917,7 @@ footer p {
     });
   });
 
-  // PLANTILLAS DE JUGADORES
+  // JUGADORES
 
   function renderPlayers() {
     const panel = $("roster-panel");
@@ -1082,10 +1937,12 @@ footer p {
 
     panel.classList.remove("hidden");
 
-    $("roster-title").textContent =
-      "✦ Plantilla de " + houseNames[selectedHouse];
+    setText(
+      "roster-title",
+      "✦ Plantilla de " + nameOfHouse(selectedHouse)
+    );
 
-    list.replaceChildren();
+    clear(list);
 
     const roster = players
       .filter(player => player.house_id === selectedHouse)
@@ -1095,14 +1952,18 @@ footer p {
         )
       );
 
-    $("roster-count").textContent =
-      roster.length + " jugador(es) registrado(s)";
+    setText(
+      "roster-count",
+      roster.length + " jugador(es) registrado(s)"
+    );
 
-    if (roster.length === 0) {
-      const message = document.createElement("p");
-      message.textContent =
-        "Todavía no hay jugadores registrados en esta casa.";
-      list.appendChild(message);
+    if (!roster.length) {
+      list.appendChild(
+        textNode(
+          "p",
+          "Todavía no hay jugadores registrados."
+        )
+      );
       return;
     }
 
@@ -1110,61 +1971,47 @@ footer p {
       const card = document.createElement("article");
       card.className = "player";
 
-      const name = document.createElement("strong");
-      name.textContent = player.full_name || "Sin nombre";
-
-      const code = document.createElement("small");
-      code.textContent = player.player_code || "Sin ID";
-
-      const detail = document.createElement("p");
-
       const number =
         player.jersey_number == null
           ? ""
           : " · #" + player.jersey_number;
 
-      detail.textContent =
-        (player.position || "Posición pendiente") + number;
+      card.append(
+        textNode("strong", player.full_name || "Sin nombre"),
+        textNode("small", player.player_code || "Sin ID"),
+        textNode(
+          "p",
+          (player.position || "Posición pendiente") + number
+        )
+      );
 
-      card.append(name, code, detail);
       list.appendChild(card);
     });
   }
 
   async function loadPlayers() {
-    if (!db) {
-      $("teams-status").textContent =
-        "No se pudo conectar con Supabase.";
-      return;
-    }
-
-    $("teams-status").textContent =
-      "Consultando plantillas oficiales...";
+    setText(
+      "teams-status",
+      "Consultando plantillas oficiales..."
+    );
 
     $("refresh-players").disabled = true;
 
     try {
-      const { data, error } = await db.rpc(
-        "get_public_players"
-      );
-
-      if (error) throw error;
+      const data = await rpc("get_public_players");
 
       players = Array.isArray(data) ? data : [];
 
-      $("teams-status").textContent =
+      setText(
+        "teams-status",
         "✓ " + players.length +
-        " jugadores consultados desde Supabase.";
+        " jugadores consultados desde Supabase."
+      );
 
       renderPlayers();
-
+      populatePlayerSelects();
     } catch (error) {
-      console.error("Error al consultar jugadores:", error);
-
-      $("teams-status").textContent =
-        "No se pudieron cargar los jugadores. " +
-        "Comprueba los permisos de get_public_players.";
-
+      setText("teams-status", formatError(error));
     } finally {
       $("refresh-players").disabled = false;
     }
@@ -1182,7 +2029,7 @@ footer p {
     loadPlayers
   );
 
-  // GENERADOR D20
+  // ENTRENAMIENTO
 
   function randomD20() {
     if (window.crypto && crypto.getRandomValues) {
@@ -1206,147 +2053,1690 @@ footer p {
     element.classList.add("rolling");
   }
 
-  // ENTRENAMIENTO SIN LÍMITES
-
   $("training-roll").addEventListener("click", () => {
     const result = randomD20();
 
     animateDie($("training-die"), result);
 
-    $("training-result").textContent =
-      "Resultado: " + result;
+    setText(
+      "training-result",
+      "Resultado: " + result
+    );
   });
 
-  // SIMULACRO DEL DADO DE PARTIDO
-  // NO REGISTRA RESULTADOS OFICIALES
+  // PARTIDOS
 
-  const TEST_COOLDOWN = 3 * 60 * 1000;
-  const TEST_KEY = "hetne-match-test-v1";
-
-  let testStore = {
-    lastRoll: 0,
-    rolls: []
-  };
-
-  try {
-    const saved = JSON.parse(localStorage.getItem(TEST_KEY));
-
-    if (saved && typeof saved === "object") {
-      testStore.lastRoll =
-        Number(saved.lastRoll) || 0;
-
-      testStore.rolls =
-        Array.isArray(saved.rolls)
-          ? saved.rolls
-          : [];
-    }
-  } catch (error) {
-    console.warn("No se recuperó el historial de prueba.");
+  function getSelectedMatch() {
+    return matches.find(
+      match => match.match_id === selectedMatchId
+    ) || null;
   }
 
-  function saveTestStore() {
-    try {
-      localStorage.setItem(
-        TEST_KEY,
-        JSON.stringify(testStore)
+  function getAdminMatch() {
+    return matches.find(
+      match => match.match_id === selectedAdminMatchId
+    ) || null;
+  }
+
+  function createMatchCard(match) {
+    const card = document.createElement("article");
+
+    card.className = "match-card";
+
+    if (match.match_id === selectedMatchId) {
+      card.classList.add("selected");
+    }
+
+    const label = textNode(
+      "div",
+      (match.is_test ? "SIMULACRO" : "OFICIAL") +
+      " · " +
+      matchStatusLabel(match.match_status),
+      "match-meta"
+    );
+
+    const versus = document.createElement("div");
+    versus.className = "match-versus";
+
+    const home = document.createElement("div");
+    const away = document.createElement("div");
+    const middle = document.createElement("div");
+
+    home.appendChild(
+      textNode(
+        "div",
+        nameOfHouse(match.home_house_id),
+        "match-house"
+      )
+    );
+
+    away.appendChild(
+      textNode(
+        "div",
+        nameOfHouse(match.away_house_id),
+        "match-house"
+      )
+    );
+
+    middle.appendChild(
+      textNode("span", "VS", "eyebrow")
+    );
+
+    if (
+      match.home_score != null &&
+      match.away_score != null
+    ) {
+      home.appendChild(
+        textNode("div", match.home_score, "match-score")
       );
-    } catch (error) {
-      console.warn("No se guardó el simulacro.");
+
+      away.appendChild(
+        textNode("div", match.away_score, "match-score")
+      );
     }
+
+    versus.append(home, middle, away);
+
+    const date = textNode(
+      "p",
+      formatDate(match.scheduled_at)
+    );
+
+    const button = textNode(
+      "button",
+      "Ver encuentro",
+      "btn secondary"
+    );
+
+    button.type = "button";
+
+    button.addEventListener("click", () => {
+      selectMatch(match.match_id);
+    });
+
+    card.append(label, versus, date, button);
+
+    return card;
   }
 
-  function displayTestHistory() {
-    const root = $("match-history");
-    root.replaceChildren();
+  function renderMatches() {
+    const list = $("matches-list");
+    clear(list);
 
-    if (testStore.rolls.length === 0) {
-      root.textContent = "Todavía no hay tiradas.";
+    if (!matches.length) {
+      list.appendChild(
+        textNode(
+          "p",
+          "Todavía no hay partidos registrados."
+        )
+      );
       return;
     }
 
-    testStore.rolls
-      .slice(-25)
-      .reverse()
-      .forEach(roll => {
+    matches.forEach(match => {
+      list.appendChild(createMatchCard(match));
+    });
+  }
+
+  function renderHomeNextMatch() {
+    const root = $("home-next-match");
+    clear(root);
+
+    const next = matches.find(match =>
+      match.match_status === "open" ||
+      match.match_status === "scheduled"
+    );
+
+    if (!next) {
+      root.appendChild(
+        textNode("p", "Por anunciar.")
+      );
+      return;
+    }
+
+    root.appendChild(
+      textNode(
+        "p",
+        nameOfHouse(next.home_house_id) +
+        " VS " +
+        nameOfHouse(next.away_house_id)
+      )
+    );
+
+    root.appendChild(
+      textNode(
+        "p",
+        (next.is_test ? "Simulacro" : "Oficial") +
+        " · " +
+        matchStatusLabel(next.match_status)
+      )
+    );
+
+    const button = textNode(
+      "button",
+      "Ver partido",
+      "btn secondary"
+    );
+
+    button.addEventListener("click", () => {
+      showPage("partido");
+      selectMatch(next.match_id);
+    });
+
+    root.appendChild(button);
+  }
+
+  async function loadMatches() {
+    setText(
+      "matches-status",
+      "Consultando partidos..."
+    );
+
+    $("refresh-matches").disabled = true;
+
+    try {
+      const data = await rpc("get_quidditch_matches");
+
+      matches = Array.isArray(data) ? data : [];
+
+      renderMatches();
+      renderHomeNextMatch();
+      populateAdminMatches();
+      renderLatestMatch();
+
+      setText(
+        "matches-status",
+        "✓ " + matches.length +
+        " encuentro(s) consultado(s)."
+      );
+
+      if (
+        selectedMatchId &&
+        matches.some(m => m.match_id === selectedMatchId)
+      ) {
+        await loadSelectedMatchDetails();
+      } else if (selectedMatchId) {
+        selectedMatchId = null;
+        $("selected-match-panel").classList.add("hidden");
+      }
+
+    } catch (error) {
+      setText(
+        "matches-status",
+        "No se pudieron consultar los partidos: " +
+        formatError(error)
+      );
+    } finally {
+      $("refresh-matches").disabled = false;
+      updateRollButton();
+    }
+  }
+
+  $("refresh-matches").addEventListener(
+    "click",
+    loadMatches
+  );
+
+  function selectMatch(matchId) {
+    selectedMatchId = matchId;
+
+    nextRollAt = 0;
+    setText("match-result", "");
+
+    renderMatches();
+    loadSelectedMatchDetails();
+    updateRollButton();
+  }
+
+  function renderSelectedMatch() {
+    const match = getSelectedMatch();
+
+    if (!match) {
+      $("selected-match-panel").classList.add("hidden");
+      return;
+    }
+
+    $("selected-match-panel").classList.remove("hidden");
+
+    setText(
+      "selected-match-title",
+      nameOfHouse(match.home_house_id) +
+      " VS " +
+      nameOfHouse(match.away_house_id)
+    );
+
+    setText(
+      "selected-match-label",
+      (match.is_test ? "SIMULACRO" : "PARTIDO OFICIAL") +
+      " · " +
+      matchStatusLabel(match.match_status)
+    );
+
+    setText(
+      "match-mode-label",
+      match.is_test
+        ? "SIMULACRO EN SUPABASE · D20"
+        : "PARTIDO OFICIAL · D20"
+    );
+
+    const root = $("selected-match-summary");
+    clear(root);
+
+    const score =
+      match.home_score == null ||
+      match.away_score == null
+        ? "Marcador pendiente"
+        : match.home_score + " — " + match.away_score;
+
+    root.appendChild(
+      textNode("p", score)
+    );
+
+    if (
+      !match.is_test &&
+      match.match_status === "closed"
+    ) {
+      root.appendChild(
+        textNode(
+          "p",
+          "Puntos de campeonato: " +
+          (match.home_championship_points ?? "Pendiente") +
+          " — " +
+          (match.away_championship_points ?? "Pendiente")
+        )
+      );
+    }
+  }
+
+  async function loadSelectedMatchDetails() {
+    const match = getSelectedMatch();
+
+    if (!match) return;
+
+    const requestedId = match.match_id;
+
+    renderSelectedMatch();
+
+    try {
+      const [roster, rolls] = await Promise.all([
+        rpc("get_quidditch_match_roster", {
+          p_match_id: requestedId
+        }),
+        rpc("get_quidditch_match_rolls", {
+          p_match_id: requestedId
+        })
+      ]);
+
+      if (selectedMatchId !== requestedId) return;
+
+      currentRoster = Array.isArray(roster) ? roster : [];
+      currentRolls = Array.isArray(rolls) ? rolls : [];
+
+      renderMatchRoster();
+      renderMatchRolls();
+
+      if (selectedAdminMatchId === requestedId) {
+        populateSubstitutionSelects();
+      }
+    } catch (error) {
+      if (selectedMatchId !== requestedId) return;
+
+      setText(
+        "match-roster-view",
+        formatError(error)
+      );
+
+      setText(
+        "match-history",
+        "No se pudo consultar el historial."
+      );
+    }
+
+    updateRollButton();
+  }
+
+  function renderMatchRoster() {
+    const root = $("match-roster-view");
+    clear(root);
+
+    if (!currentRoster.length) {
+      root.appendChild(
+        textNode(
+          "p",
+          "Todavía no se ha publicado la convocatoria."
+        )
+      );
+      return;
+    }
+
+    const match = getSelectedMatch();
+
+    if (!match) return;
+
+    [
+      match.home_house_id,
+      match.away_house_id
+    ].forEach(houseId => {
+      root.appendChild(
+        textNode(
+          "h3",
+          nameOfHouse(houseId)
+        )
+      );
+
+      const roster = currentRoster.filter(
+        player => player.house_id === houseId
+      );
+
+      if (!roster.length) {
+        root.appendChild(
+          textNode("p", "Sin jugadores convocados.")
+        );
+        return;
+      }
+
+      roster.forEach(player => {
         const entry = document.createElement("div");
         entry.className = "entry";
 
-        const date = new Date(roll.at)
-          .toLocaleString("es-ES");
-
         entry.textContent =
-          "D20: " + roll.value +
-          " · " + date +
-          " · SIMULACRO";
+          player.player_code +
+          " · " +
+          player.full_name +
+          " · " +
+          player.roster_status +
+          (player.can_roll ? " · AUTORIZADO" : "");
 
         root.appendChild(entry);
       });
+    });
   }
 
-  function updateMatchCooldown() {
-    const remaining = Math.max(
-      0,
-      TEST_COOLDOWN -
-      (Date.now() - testStore.lastRoll)
-    );
+  function renderMatchRolls() {
+    const root = $("match-history");
+    clear(root);
 
-    const button = $("match-roll");
-    const status = $("match-cooldown");
-
-    button.disabled = remaining > 0;
-
-    if (remaining === 0) {
-      status.textContent = "Dado disponible";
+    if (!currentRolls.length) {
+      root.appendChild(
+        textNode(
+          "p",
+          "Todavía no se han registrado tiradas."
+        )
+      );
       return;
     }
 
-    const totalSeconds = Math.ceil(remaining / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
+    currentRolls.slice(0, 50).forEach(roll => {
+      const entry = document.createElement("div");
+      entry.className = "entry";
 
-    status.textContent =
-      "Próxima tirada en " +
-      String(minutes).padStart(2, "0") +
-      ":" +
-      String(seconds).padStart(2, "0");
+      entry.textContent =
+        roll.player_code +
+        " · " +
+        roll.full_name +
+        " · D20: " +
+        roll.dice_result +
+        " · " +
+        formatDate(roll.rolled_at);
+
+      root.appendChild(entry);
+    });
   }
 
-  $("match-roll").addEventListener("click", () => {
-    updateMatchCooldown();
+  // AUTENTICACIÓN
 
-    if ($("match-roll").disabled) return;
+  function resetGameSession() {
+    gameSessionToken = null;
+    gameSessionExpires = null;
+    nextRollAt = 0;
 
-    const result = randomD20();
-    const now = Date.now();
+    setText(
+      "session-status",
+      "Activa una sesión para jugar."
+    );
 
-    testStore.lastRoll = now;
+    updateRollButton();
+  }
 
-    testStore.rolls.push({
-      value: result,
-      at: now
+  async function refreshAuth(user) {
+    const version = ++authVersion;
+
+    const previousId = currentUser?.id || null;
+    const nextId = user?.id || null;
+
+    if (previousId !== nextId) {
+      resetGameSession();
+    }
+
+    currentUser = user || null;
+    isAdmin = false;
+
+    if (!currentUser) {
+      $("login-box").classList.remove("hidden");
+      $("account-box").classList.add("hidden");
+      $("admin-panel").classList.add("hidden");
+      $("player-session-controls").classList.add("hidden");
+
+      setText("system-user", "Sin sesión iniciada.");
+      setText(
+        "player-access-status",
+        "Inicia sesión para activar tu acceso al dado."
+      );
+
+      updateRollButton();
+      return;
+    }
+
+    $("login-box").classList.add("hidden");
+    $("account-box").classList.remove("hidden");
+    $("player-session-controls").classList.remove("hidden");
+
+    setText("account-email", currentUser.email || "Cuenta activa");
+    setText("system-user", "Cuenta autenticada.");
+
+    try {
+      const result = await rpc("is_quidditch_admin");
+
+      if (version !== authVersion) return;
+
+      isAdmin = result === true;
+
+      $("admin-panel").classList.toggle(
+        "hidden",
+        !isAdmin
+      );
+
+      setText(
+        "account-role",
+        isAdmin
+          ? "✓ Administrador autorizado"
+          : "Cuenta autenticada · acceso de jugador"
+      );
+
+      setText(
+        "player-access-status",
+        isAdmin
+          ? "Sesión administrativa. Para lanzar, utiliza una cuenta de jugador vinculada."
+          : "Cuenta autenticada. Activa tu sesión de juego."
+      );
+
+      if (isAdmin) {
+        populateAdminMatches();
+      }
+
+    } catch (error) {
+      if (version !== authVersion) return;
+
+      $("admin-panel").classList.add("hidden");
+
+      setText(
+        "account-role",
+        "No se pudieron verificar los permisos: " +
+        formatError(error)
+      );
+    }
+
+    updateRollButton();
+  }
+
+  $("login-form").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const button = $("login-button");
+
+    await runButton(button, async () => {
+      setText("auth-status", "Iniciando sesión...");
+
+      try {
+        if (!db) {
+          throw new Error("Supabase no está disponible.");
+        }
+
+        const email = $("login-email").value.trim();
+        const password = $("login-password").value;
+
+        const { error } = await db.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        $("login-password").value = "";
+
+        setText(
+          "auth-status",
+          "✓ Sesión iniciada."
+        );
+
+      } catch (error) {
+        setText(
+          "auth-status",
+          formatError(error)
+        );
+      }
     });
-
-    testStore.rolls = testStore.rolls.slice(-25);
-
-    saveTestStore();
-
-    animateDie($("match-die"), result);
-
-    $("match-result").textContent =
-      "Resultado del simulacro: " + result;
-
-    displayTestHistory();
-    updateMatchCooldown();
   });
 
-  setInterval(updateMatchCooldown, 1000);
+  $("logout-button").addEventListener("click", async () => {
+    if (!db) return;
 
-  updateMatchCooldown();
-  displayTestHistory();
+    try {
+      const { error } = await db.auth.signOut();
+
+      if (error) throw error;
+
+      resetGameSession();
+
+      setText(
+        "auth-status",
+        "Sesión cerrada."
+      );
+    } catch (error) {
+      setText(
+        "auth-status",
+        formatError(error)
+      );
+    }
+  });
+
+  // SESIÓN ÚNICA DEL JUGADOR
+
+  $("activate-session").addEventListener("click", async () => {
+    const button = $("activate-session");
+
+    await runButton(button, async () => {
+      setText(
+        "session-status",
+        "Activando sesión de juego..."
+      );
+
+      try {
+        const data = await rpc(
+          "activate_quidditch_session"
+        );
+
+        const session = Array.isArray(data)
+          ? data[0]
+          : data;
+
+        if (!session?.session_token) {
+          throw new Error(
+            "Supabase no devolvió una autorización válida."
+          );
+        }
+
+        gameSessionToken = session.session_token;
+        gameSessionExpires = Date.parse(
+          session.expires_at
+        );
+
+        nextRollAt = 0;
+
+        setText(
+          "session-status",
+          "✓ Sesión de juego activada. " +
+          "Caduca: " +
+          formatDate(session.expires_at)
+        );
+
+        setText(
+          "player-access-status",
+          "✓ Autorización de juego activada."
+        );
+
+      } catch (error) {
+        resetGameSession();
+
+        setText(
+          "session-status",
+          formatError(error)
+        );
+      }
+    });
+  });
+
+  // DADO OFICIAL
+
+  function updateRollButton() {
+    const button = $("match-roll");
+    const match = getSelectedMatch();
+
+    const now = Date.now();
+
+    const remaining = Math.max(
+      0,
+      nextRollAt - now
+    );
+
+    const sessionExpired =
+      !gameSessionToken ||
+      !gameSessionExpires ||
+      now >= gameSessionExpires;
+
+    button.disabled =
+      rolling ||
+      !currentUser ||
+      !match ||
+      match.match_status !== "open" ||
+      sessionExpired ||
+      remaining > 0;
+
+    if (!match) {
+      setText(
+        "match-cooldown",
+        "Selecciona un partido."
+      );
+      return;
+    }
+
+    if (match.match_status === "scheduled") {
+      setText(
+        "match-cooldown",
+        "El partido todavía no ha comenzado."
+      );
+      return;
+    }
+
+    if (match.match_status === "closed") {
+      setText(
+        "match-cooldown",
+        "Partido finalizado. Dado bloqueado."
+      );
+      return;
+    }
+
+    if (!currentUser) {
+      setText(
+        "match-cooldown",
+        "Debes iniciar sesión."
+      );
+      return;
+    }
+
+    if (sessionExpired) {
+      setText(
+        "match-cooldown",
+        "Activa tu sesión de juego."
+      );
+      return;
+    }
+
+    if (remaining > 0) {
+      const seconds = Math.ceil(remaining / 1000);
+
+      const minutes = Math.floor(seconds / 60);
+      const rest = seconds % 60;
+
+      setText(
+        "match-cooldown",
+        "Próxima tirada en " +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(rest).padStart(2, "0")
+      );
+
+      return;
+    }
+
+    setText(
+      "match-cooldown",
+      "Dado disponible si estás convocado."
+    );
+  }
+
+  $("match-roll").addEventListener("click", async () => {
+    if (rolling) return;
+
+    const match = getSelectedMatch();
+
+    if (!match || !gameSessionToken) return;
+
+    rolling = true;
+    updateRollButton();
+
+    setText(
+      "match-result",
+      "Supabase está procesando la tirada..."
+    );
+
+    try {
+      const data = await rpc(
+        "roll_quidditch_d20",
+        {
+          p_match_id: match.match_id,
+          p_session_token: gameSessionToken
+        }
+      );
+
+      const roll = Array.isArray(data)
+        ? data[0]
+        : data;
+
+      if (!roll || roll.dice_result == null) {
+        throw new Error(
+          "No se recibió un resultado válido."
+        );
+      }
+
+      animateDie(
+        $("match-die"),
+        roll.dice_result
+      );
+
+      nextRollAt = Date.parse(
+        roll.next_roll_at
+      ) || 0;
+
+      setText(
+        "match-result",
+        "✓ Resultado oficial: " +
+        roll.dice_result
+      );
+
+      await loadSelectedMatchDetails();
+
+    } catch (error) {
+      setText(
+        "match-result",
+        formatError(error)
+      );
+    } finally {
+      rolling = false;
+      updateRollButton();
+    }
+  });
+
+  setInterval(updateRollButton, 1000);
+
+  // ESTADÍSTICAS
+
+  async function loadStandings() {
+    setText(
+      "stats-status",
+      "Consultando clasificación..."
+    );
+
+    $("refresh-stats").disabled = true;
+
+    try {
+      const data = await rpc(
+        "get_quidditch_standings"
+      );
+
+      standings = Array.isArray(data) ? data : [];
+
+      renderStandings();
+      renderLatestMatch();
+
+      setText(
+        "stats-status",
+        "✓ Estadísticas actualizadas."
+      );
+
+    } catch (error) {
+      setText(
+        "stats-status",
+        formatError(error)
+      );
+    } finally {
+      $("refresh-stats").disabled = false;
+    }
+  }
+
+  function renderStandings() {
+    const root = $("standings-body");
+    clear(root);
+
+    if (!standings.length) {
+      const row = document.createElement("tr");
+      const cell = textNode(
+        "td",
+        "Sin estadísticas disponibles."
+      );
+
+      cell.colSpan = 6;
+      row.appendChild(cell);
+      root.appendChild(row);
+      return;
+    }
+
+    standings.forEach(house => {
+      const row = document.createElement("tr");
+
+      [
+        house.house_name || nameOfHouse(house.house_id),
+        house.played ?? 0,
+        house.wins ?? 0,
+        house.draws ?? 0,
+        house.losses ?? 0,
+        house.league_points ?? 0
+      ].forEach(value => {
+        row.appendChild(
+          textNode("td", value)
+        );
+      });
+
+      root.appendChild(row);
+    });
+  }
+
+  function renderLatestMatch() {
+    const root = $("latest-official-match");
+    clear(root);
+
+    const latest = matches.find(match =>
+      !match.is_test &&
+      match.match_status === "closed"
+    );
+
+    if (!latest) {
+      root.appendChild(
+        textNode(
+          "p",
+          "Sin resultados oficiales publicados."
+        )
+      );
+      return;
+    }
+
+    root.appendChild(
+      textNode(
+        "p",
+        nameOfHouse(latest.home_house_id) +
+        " " +
+        (latest.home_score ?? "—") +
+        " · " +
+        (latest.away_score ?? "—") +
+        " " +
+        nameOfHouse(latest.away_house_id)
+      )
+    );
+
+    root.appendChild(
+      textNode(
+        "p",
+        "Puntos de campeonato: " +
+        (latest.home_championship_points ?? "Pendiente") +
+        " — " +
+        (latest.away_championship_points ?? "Pendiente")
+      )
+    );
+  }
+
+  $("refresh-stats").addEventListener(
+    "click",
+    loadStandings
+  );
+
+  // SELECTORES ADMINISTRATIVOS
+
+  function fillSelect(
+    select,
+    items,
+    getValue,
+    getLabel,
+    placeholder
+  ) {
+    const previous = select.value;
+
+    clear(select);
+
+    const empty = document.createElement("option");
+    empty.value = "";
+    empty.textContent = placeholder;
+    select.appendChild(empty);
+
+    items.forEach(item => {
+      const option = document.createElement("option");
+
+      option.value = String(getValue(item));
+      option.textContent = String(getLabel(item));
+
+      select.appendChild(option);
+    });
+
+    if (
+      [...select.options].some(
+        option => option.value === previous
+      )
+    ) {
+      select.value = previous;
+    }
+  }
+
+  function populatePlayerSelects() {
+    const sorted = [...players].sort((a, b) =>
+      String(a.player_code).localeCompare(
+        String(b.player_code)
+      )
+    );
+
+    fillSelect(
+      $("link-player-code"),
+      sorted,
+      player => player.player_code,
+      player =>
+        player.player_code +
+        " · " +
+        player.full_name,
+      "Selecciona un jugador"
+    );
+
+    populateRosterPlayerSelect();
+  }
+
+  function populateAdminMatches() {
+    const select = $("admin-match-select");
+
+    fillSelect(
+      select,
+      matches,
+      match => match.match_id,
+      match =>
+        (match.is_test ? "SIMULACRO" : "OFICIAL") +
+        " · " +
+        nameOfHouse(match.home_house_id) +
+        " VS " +
+        nameOfHouse(match.away_house_id) +
+        " · " +
+        matchStatusLabel(match.match_status),
+      "Selecciona un partido"
+    );
+
+    if (
+      selectedAdminMatchId &&
+      matches.some(
+        match => match.match_id === selectedAdminMatchId
+      )
+    ) {
+      select.value = selectedAdminMatchId;
+    } else {
+      selectedAdminMatchId = select.value || null;
+    }
+
+    renderAdminMatch();
+    populateRosterPlayerSelect();
+  }
+
+  function populateRosterPlayerSelect() {
+    const match = getAdminMatch();
+
+    const allowed = match
+      ? players.filter(player =>
+          player.house_id === match.home_house_id ||
+          player.house_id === match.away_house_id
+        )
+      : [];
+
+    fillSelect(
+      $("roster-player"),
+      allowed,
+      player => player.player_code,
+      player =>
+        player.player_code +
+        " · " +
+        player.full_name +
+        " · " +
+        nameOfHouse(player.house_id),
+      "Selecciona un jugador"
+    );
+  }
+
+  function renderAdminMatch() {
+    const match = getAdminMatch();
+
+    if (!match) {
+      setText(
+        "admin-match-info",
+        "Selecciona un encuentro."
+      );
+      return;
+    }
+
+    setText(
+      "admin-match-info",
+      nameOfHouse(match.home_house_id) +
+      " VS " +
+      nameOfHouse(match.away_house_id) +
+      " · " +
+      (match.is_test ? "SIMULACRO" : "OFICIAL") +
+      " · " +
+      matchStatusLabel(match.match_status)
+    );
+
+    $("home-score").value =
+      match.home_score ?? 0;
+
+    $("away-score").value =
+      match.away_score ?? 0;
+
+    $("home-champ-points").value =
+      match.home_championship_points ?? 0;
+
+    $("away-champ-points").value =
+      match.away_championship_points ?? 0;
+
+    $("open-match").disabled =
+      match.match_status !== "scheduled";
+
+    $("close-match").disabled =
+      match.match_status !== "open";
+
+    populateRosterPlayerSelect();
+
+    loadAdminRoster();
+  }
+
+  $("admin-match-select").addEventListener(
+    "change",
+    () => {
+      selectedAdminMatchId =
+        $("admin-match-select").value || null;
+
+      renderAdminMatch();
+    }
+  );
+
+  async function loadAdminRoster() {
+    const matchId = selectedAdminMatchId;
+
+    if (!matchId) {
+      populateSubstitutionSelects([]);
+      return;
+    }
+
+    try {
+      const data = await rpc(
+        "get_quidditch_match_roster",
+        { p_match_id: matchId }
+      );
+
+      if (selectedAdminMatchId !== matchId) return;
+
+      populateSubstitutionSelects(
+        Array.isArray(data) ? data : []
+      );
+    } catch (error) {
+      setText(
+        "substitution-status",
+        formatError(error)
+      );
+    }
+  }
+
+  function populateSubstitutionSelects(roster = currentRoster) {
+    const titulars = roster.filter(
+      player =>
+        player.roster_status === "titular" &&
+        player.can_roll === true
+    );
+
+    const substitutes = roster.filter(
+      player =>
+        player.roster_status === "suplente" &&
+        player.can_roll !== true
+    );
+
+    fillSelect(
+      $("sub-out"),
+      titulars,
+      player => player.player_code,
+      player =>
+        player.player_code +
+        " · " +
+        player.full_name,
+      "Titular que sale"
+    );
+
+    fillSelect(
+      $("sub-in"),
+      substitutes,
+      player => player.player_code,
+      player =>
+        player.player_code +
+        " · " +
+        player.full_name,
+      "Suplente que entra"
+    );
+  }
+
+  function requireAdminMatch() {
+    if (!isAdmin) {
+      throw new Error(
+        "Necesitas permisos de administrador."
+      );
+    }
+
+    const match = getAdminMatch();
+
+    if (!match) {
+      throw new Error(
+        "Selecciona un partido primero."
+      );
+    }
+
+    return match;
+  }
+
+  async function refreshAfterAdminChange() {
+    await loadMatches();
+    await loadStandings();
+    await loadAdminRoster();
+  }
+
+  // CREAR PARTIDO
+
+  $("create-match-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          if (!isAdmin) {
+            throw new Error(
+              "No tienes permisos de administrador."
+            );
+          }
+
+          const home = $("new-home").value;
+          const away = $("new-away").value;
+
+          if (home === away) {
+            throw new Error(
+              "Selecciona dos casas diferentes."
+            );
+          }
+
+          const isTest =
+            $("new-match-type").value === "test";
+
+          if (!isTest) {
+            const confirmed = confirm(
+              "Vas a crear un partido OFICIAL. " +
+              "¿Quieres continuar?"
+            );
+
+            if (!confirmed) return;
+          }
+
+          const id = await rpc(
+            "create_quidditch_match",
+            {
+              p_home_house_id: home,
+              p_away_house_id: away,
+              p_is_test: isTest
+            }
+          );
+
+          selectedAdminMatchId = id;
+
+          setText(
+            "create-match-status",
+            "✓ Partido creado correctamente."
+          );
+
+          await refreshAfterAdminChange();
+
+        } catch (error) {
+          setText(
+            "create-match-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // CONVOCAR JUGADOR
+
+  $("roster-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          if (match.match_status !== "scheduled") {
+            throw new Error(
+              "La convocatoria solo se edita antes del partido."
+            );
+          }
+
+          const code = $("roster-player").value;
+          const role = $("roster-role").value;
+
+          if (!code) {
+            throw new Error(
+              "Selecciona un jugador."
+            );
+          }
+
+          const result = await rpc(
+            "set_match_player",
+            {
+              p_match_id: match.match_id,
+              p_player_code: code,
+              p_roster_status: role
+            }
+          );
+
+          setText(
+            "roster-admin-status",
+            result
+          );
+
+          await loadAdminRoster();
+
+          if (selectedMatchId === match.match_id) {
+            await loadSelectedMatchDetails();
+          }
+
+        } catch (error) {
+          setText(
+            "roster-admin-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // ABRIR PARTIDO
+
+  $("open-match").addEventListener(
+    "click",
+    async () => {
+      const button = $("open-match");
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          if (!confirm(
+            "¿Abrir este partido? " +
+            "Los titulares autorizados podrán lanzar."
+          )) return;
+
+          const result = await rpc(
+            "open_quidditch_match",
+            {
+              p_match_id: match.match_id
+            }
+          );
+
+          setText(
+            "match-control-status",
+            result
+          );
+
+          await refreshAfterAdminChange();
+
+        } catch (error) {
+          setText(
+            "match-control-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // CERRAR PARTIDO
+
+  $("close-match").addEventListener(
+    "click",
+    async () => {
+      const button = $("close-match");
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          if (!confirm(
+            "¿Cerrar definitivamente este partido? " +
+            "Los jugadores dejarán de poder lanzar."
+          )) return;
+
+          const result = await rpc(
+            "close_quidditch_match",
+            {
+              p_match_id: match.match_id
+            }
+          );
+
+          setText(
+            "match-control-status",
+            result
+          );
+
+          await refreshAfterAdminChange();
+
+        } catch (error) {
+          setText(
+            "match-control-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // SUSTITUCIONES
+
+  $("substitution-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          const outgoing = $("sub-out").value;
+          const incoming = $("sub-in").value;
+
+          if (!outgoing || !incoming) {
+            throw new Error(
+              "Selecciona el titular y el suplente."
+            );
+          }
+
+          if (!confirm(
+            "¿Aprobar sustitución de " +
+            outgoing +
+            " por " +
+            incoming +
+            "?"
+          )) return;
+
+          const result = await rpc(
+            "approve_quidditch_substitution",
+            {
+              p_match_id: match.match_id,
+              p_out_player_code: outgoing,
+              p_in_player_code: incoming
+            }
+          );
+
+          setText(
+            "substitution-status",
+            result
+          );
+
+          await loadAdminRoster();
+
+          if (selectedMatchId === match.match_id) {
+            await loadSelectedMatchDetails();
+          }
+
+        } catch (error) {
+          setText(
+            "substitution-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // MARCADOR
+
+  $("score-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          const home = Number(
+            $("home-score").value
+          );
+
+          const away = Number(
+            $("away-score").value
+          );
+
+          if (
+            !Number.isSafeInteger(home) ||
+            !Number.isSafeInteger(away) ||
+            home < 0 ||
+            away < 0
+          ) {
+            throw new Error(
+              "Introduce marcadores enteros válidos."
+            );
+          }
+
+          const result = await rpc(
+            "set_quidditch_match_score",
+            {
+              p_match_id: match.match_id,
+              p_home_score: home,
+              p_away_score: away
+            }
+          );
+
+          setText("score-status", result);
+
+          await refreshAfterAdminChange();
+
+        } catch (error) {
+          setText(
+            "score-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // PUNTOS DEL CAMPEONATO
+
+  $("championship-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          const match = requireAdminMatch();
+
+          if (match.is_test) {
+            throw new Error(
+              "Los simulacros no otorgan puntos."
+            );
+          }
+
+          const home = Number(
+            $("home-champ-points").value
+          );
+
+          const away = Number(
+            $("away-champ-points").value
+          );
+
+          if (
+            !Number.isSafeInteger(home) ||
+            !Number.isSafeInteger(away) ||
+            home < 0 ||
+            away < 0
+          ) {
+            throw new Error(
+              "Introduce puntos enteros válidos."
+            );
+          }
+
+          if (!confirm(
+            "¿Guardar estos puntos oficiales " +
+            "para el campeonato?"
+          )) return;
+
+          const result = await rpc(
+            "set_quidditch_championship_points",
+            {
+              p_match_id: match.match_id,
+              p_home_points: home,
+              p_away_points: away
+            }
+          );
+
+          setText(
+            "championship-status",
+            result
+          );
+
+          await refreshAfterAdminChange();
+
+        } catch (error) {
+          setText(
+            "championship-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  // VINCULAR JUGADOR
+
+  $("link-player-form").addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      const button = event.submitter;
+
+      await runButton(button, async () => {
+        try {
+          if (!isAdmin) {
+            throw new Error(
+              "No tienes permisos de administrador."
+            );
+          }
+
+          const code = $("link-player-code").value;
+          const email = $("link-player-email").value.trim();
+
+          if (!code || !email) {
+            throw new Error(
+              "Selecciona un jugador y escribe su correo."
+            );
+          }
+
+          if (!confirm(
+            "¿Vincular " +
+            code +
+            " a la cuenta " +
+            email +
+            "?"
+          )) return;
+
+          const result = await rpc(
+            "link_quidditch_player",
+            {
+              p_player_code: code,
+              p_user_email: email
+            }
+          );
+
+          setText(
+            "link-player-status",
+            result
+          );
+
+          $("link-player-email").value = "";
+
+        } catch (error) {
+          setText(
+            "link-player-status",
+            formatError(error)
+          );
+        }
+      });
+    }
+  );
+
+  $("admin-refresh").addEventListener(
+    "click",
+    refreshAfterAdminChange
+  );
+
+  // ACTUALIZACIÓN PERIÓDICA
+
+  async function refreshLiveData() {
+    if (document.hidden || !db) return;
+
+    try {
+      await loadMatches();
+
+      const activePage =
+        document.querySelector(".page.active")?.id;
+
+      if (activePage === "estadisticas") {
+        await loadStandings();
+      }
+    } catch (error) {
+      console.warn(
+        "No se pudo actualizar la información:",
+        error
+      );
+    }
+  }
+
+  setInterval(refreshLiveData, 30000);
 
   // CARGA INICIAL
 
-  loadPlayers();
+  async function initialize() {
+    await Promise.all([
+      loadPlayers(),
+      loadMatches(),
+      loadStandings()
+    ]);
+
+    if (!db) return;
+
+    db.auth.onAuthStateChange((_event, session) => {
+      // Evitamos llamadas a Supabase dentro
+      // del callback de cambio de autenticación.
+      setTimeout(() => {
+        refreshAuth(session?.user || null);
+      }, 0);
+    });
+
+    try {
+      const { data, error } = await db.auth.getSession();
+
+      if (error) throw error;
+
+      await refreshAuth(
+        data.session?.user || null
+      );
+    } catch (error) {
+      setText(
+        "auth-status",
+        formatError(error)
+      );
+    }
+  }
+
+  initialize();
 
 })();
 </script>
