@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,13 +9,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* COLORES OFICIALES */
-
 :root {
   --black: #090909;
   --panel: #171718;
@@ -22,20 +19,15 @@
   --gold: #c9aa75;
   --muted: #bcb6ad;
   --line: #ffffff35;
-
   --gryffindor: #873943;
   --ravenclaw: #345c91;
   --hufflepuff: #c8a349;
   --slytherin: #34684f;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -45,26 +37,14 @@ body {
   font-size: 20px;
 }
 
-button, input {
-  font: inherit;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .5; cursor: not-allowed; }
 
-button {
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-button:focus-visible,
-input:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
 }
-
-/* NAVEGACIÓN */
 
 header {
   position: sticky;
@@ -90,7 +70,6 @@ header {
   font-size: 22px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--white);
 }
 
 .brand small {
@@ -122,21 +101,14 @@ nav button.active {
   border-bottom-color: var(--gold);
 }
 
-/* PÁGINAS */
-
 main {
   max-width: 1250px;
   margin: auto;
   padding: 24px 20px 75px;
 }
 
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
+.page { display: none; }
+.page.active { display: block; }
 
 h1, h2, h3 {
   font-family: Cinzel, Georgia, serif;
@@ -165,31 +137,17 @@ p {
   color: var(--gold);
 }
 
-.script {
-  font-family: Caveat, cursive;
-  font-size: 43px;
-  color: var(--gold);
-}
-
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 /* PORTADA EDITORIAL */
 
 .editorial-cover {
   border: 1px solid #ffffff55;
   background:
-    radial-gradient(
-      ellipse at 85% 5%,
-      #292327,
-      transparent 55%
-    ),
+    radial-gradient(ellipse at 85% 5%, #292327, transparent 55%),
     #0b0b0c;
-
   padding: clamp(18px, 4vw, 48px);
   overflow: hidden;
-  position: relative;
 }
 
 .cover-head {
@@ -209,9 +167,7 @@ p {
   color: var(--gold);
 }
 
-.cover-title {
-  margin-top: 40px;
-}
+.cover-title { margin-top: 40px; }
 
 .cover-title .the {
   display: block;
@@ -239,8 +195,6 @@ p {
   margin-right: 7%;
 }
 
-/* COLORES DE LAS CASAS */
-
 .house-stripes {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -248,16 +202,11 @@ p {
   margin: 28px 0;
 }
 
-.house-stripes span {
-  height: 9px;
-}
-
+.house-stripes span { height: 9px; }
 .stripe-g { background: var(--gryffindor); }
 .stripe-r { background: var(--ravenclaw); }
 .stripe-h { background: var(--hufflepuff); }
 .stripe-s { background: var(--slytherin); }
-
-/* TITULAR DE PORTADA */
 
 .cover-intro {
   border-top: 1px solid var(--line);
@@ -298,8 +247,6 @@ p {
   font-size: 11px;
   flex-shrink: 0;
 }
-
-/* COLLAGE DE SECCIONES */
 
 .editorial-grid {
   display: grid;
@@ -360,26 +307,20 @@ p {
 
 .feature-large {
   grid-row: span 2;
-  background:
-    linear-gradient(145deg, #25466c, #101a2b);
+  background: linear-gradient(145deg, #25466c, #101a2b);
 }
 
 .feature-match {
-  background:
-    linear-gradient(145deg, #793039, #271419);
+  background: linear-gradient(145deg, #793039, #271419);
 }
 
 .feature-train {
-  background:
-    linear-gradient(145deg, #80672d, #2c2414);
+  background: linear-gradient(145deg, #80672d, #2c2414);
 }
 
 .feature-stats {
-  background:
-    linear-gradient(145deg, #285d45, #11251c);
+  background: linear-gradient(145deg, #285d45, #11251c);
 }
-
-/* PIE DE PORTADA */
 
 .cover-bottom {
   display: flex;
@@ -409,11 +350,7 @@ p {
   text-align: right;
 }
 
-.lower-quote span {
-  color: var(--gold);
-}
-
-/* ARCHIVO TEMPORADA ANTERIOR */
+.lower-quote span { color: var(--gold); }
 
 .archive {
   margin: 45px 0;
@@ -442,7 +379,7 @@ p {
   color: #999;
 }
 
-/* COMPONENTES GENERALES */
+/* COMPONENTES */
 
 .grid {
   display: grid;
@@ -456,13 +393,8 @@ p {
   padding: 25px;
 }
 
-.wide {
-  grid-column: 1 / -1;
-}
-
-.center {
-  text-align: center;
-}
+.wide { grid-column: 1 / -1; }
+.center { text-align: center; }
 
 .btn {
   background: linear-gradient(135deg, #f1dfbd, #c6a05a);
@@ -507,10 +439,7 @@ p {
   padding: 25px;
 }
 
-.paper h3,
-.paper p {
-  color: #211b15;
-}
+.paper h3, .paper p { color: #211b15; }
 
 /* EQUIPOS */
 
@@ -527,9 +456,7 @@ p {
   transition: transform .2s;
 }
 
-.team:hover {
-  transform: translateY(-3px);
-}
+.team:hover { transform: translateY(-3px); }
 
 .team.selected {
   outline: 3px solid var(--gold);
@@ -560,10 +487,6 @@ p {
 
 .slytherin {
   background: linear-gradient(135deg, #326b50, #10271c);
-}
-
-.roster-card {
-  margin-top: 20px;
 }
 
 .player-list {
@@ -618,9 +541,32 @@ p {
 }
 
 @keyframes spin {
-  50% {
-    transform: rotate(16deg) scale(.88);
-  }
+  50% { transform: rotate(16deg) scale(.88); }
+}
+
+/* HISTORIAL */
+
+.log {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.entry {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.test-label {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 8px 13px;
+  border: 1px solid #c9aa7570;
+  color: var(--gold);
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
 footer {
@@ -638,10 +584,7 @@ footer p {
   letter-spacing: 0;
 }
 
-/* MÓVILES */
-
 @media(max-width: 800px) {
-
   .top {
     display: block;
     text-align: center;
@@ -668,9 +611,7 @@ footer p {
     grid-template-rows: auto;
   }
 
-  .feature {
-    min-height: 185px;
-  }
+  .feature { min-height: 185px; }
 
   .feature-large {
     grid-row: auto;
@@ -682,9 +623,7 @@ footer p {
     font-size: clamp(24px, 6vw, 42px);
   }
 
-  .cover-title h1 {
-    letter-spacing: -2px;
-  }
+  .cover-title h1 { letter-spacing: -2px; }
 
   .cover-stamp {
     width: 80px;
@@ -692,21 +631,14 @@ footer p {
     font-size: 9px;
   }
 
-  .lower-quote {
-    text-align: left;
-  }
+  .lower-quote { text-align: left; }
 
   .archive-slots {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .archive-slots div {
-    min-height: 110px;
-  }
-
-  .wide {
-    grid-column: auto;
-  }
+  .archive-slots div { min-height: 110px; }
+  .wide { grid-column: auto; }
 }
 
 @media(prefers-reduced-motion: reduce) {
@@ -715,7 +647,6 @@ footer p {
     scroll-behavior: auto !important;
   }
 }
-
 </style>
 </head>
 
@@ -723,7 +654,6 @@ footer p {
 
 <header>
   <div class="top">
-
     <div class="brand">
       ✦ QUIDDITCH
       <small>COLEGIO HETNE</small>
@@ -737,13 +667,12 @@ footer p {
       <button data-page="estadisticas">Estadísticas</button>
       <button data-page="administracion">Administración</button>
     </nav>
-
   </div>
 </header>
 
 <main>
 
-<!-- ================= INICIO ================= -->
+<!-- INICIO -->
 
 <section id="inicio" class="page active">
 
@@ -768,7 +697,6 @@ footer p {
     </div>
 
     <div class="cover-intro">
-
       <p>
         CUATRO CASAS.<br>
         UNA COPA.<br>
@@ -781,10 +709,7 @@ footer p {
         ATHLETICS<br>
         ✦
       </div>
-
     </div>
-
-    <!-- COLLAGE DE SECCIONES -->
 
     <div class="editorial-grid">
 
@@ -819,20 +744,16 @@ footer p {
     </div>
 
     <div class="cover-bottom">
-      <span>
-        GRYFFINDOR · RAVENCLAW · HUFFLEPUFF · SLYTHERIN
-      </span>
+      <span>GRYFFINDOR · RAVENCLAW · HUFFLEPUFF · SLYTHERIN</span>
       <span>EST. HETNE ✦</span>
     </div>
 
   </div>
 
   <div class="editorial-lower">
-
     <div>
       <div class="eyebrow">FROM THE SIDELINES</div>
       <h2>Más que un juego.</h2>
-
       <p>
         Cuatro casas, un mismo campo y una temporada
         por escribir. Descubre las plantillas, entrena
@@ -845,19 +766,11 @@ footer p {
       Four houses.<br>
       <span>Endless stories.</span>”
     </div>
-
   </div>
 
-  <!-- ARCHIVO FOTOGRÁFICO -->
-
   <div class="archive">
-
-    <div class="eyebrow">
-      THE ARCHIVES · TEMPORADA ANTERIOR
-    </div>
-
+    <div class="eyebrow">THE ARCHIVES · TEMPORADA ANTERIOR</div>
     <h2>Previously on the pitch</h2>
-
     <p>
       Archivo fotográfico de la temporada anterior.
       Próximamente, los mejores momentos del campeonato.
@@ -868,16 +781,12 @@ footer p {
       <div>ARCHIVE<br>02</div>
       <div>ARCHIVE<br>03</div>
     </div>
-
   </div>
 
   <div class="grid">
-
     <article class="panel">
       <h3>✦ Reglamento oficial</h3>
-      <p>
-        El reglamento se publicará cuando sea aprobado.
-      </p>
+      <p>El reglamento se publicará cuando sea aprobado.</p>
     </article>
 
     <article class="panel">
@@ -887,25 +796,16 @@ footer p {
 
     <article class="panel wide">
       <h3>✦ Organización</h3>
-
-      <p>
-        Jude Caskey · Layla Nott Rosier ·
-        Adelaide Bleichröder
-      </p>
+      <p>Jude Caskey · Layla Nott Rosier · Adelaide Bleichröder</p>
     </article>
-
   </div>
 
 </section>
 
-<!-- ================= EQUIPOS ================= -->
+<!-- EQUIPOS -->
 
 <section id="equipos" class="page">
-
-  <div class="eyebrow">
-    CAMPEONATO DE LAS CUATRO CASAS
-  </div>
-
+  <div class="eyebrow">CAMPEONATO DE LAS CUATRO CASAS</div>
   <h2>THE TEAMS</h2>
 
   <p>
@@ -914,7 +814,6 @@ footer p {
   </p>
 
   <div class="grid">
-
     <button class="team ravenclaw" data-house="ravenclaw">
       <strong>✦ Ravenclaw</strong>
       <span>Sabiduría y estrategia</span>
@@ -934,18 +833,13 @@ footer p {
       <strong>✦ Hufflepuff</strong>
       <span>Lealtad y perseverancia</span>
     </button>
-
   </div>
 
   <div id="roster-panel" class="panel hidden"
        style="margin-top:20px">
-
     <h3 id="roster-title">Plantilla oficial</h3>
-
     <p id="roster-count"></p>
-
     <div id="players-list" class="player-list"></div>
-
   </div>
 
   <p id="teams-status" class="status" role="status">
@@ -955,59 +849,63 @@ footer p {
   <button class="btn secondary" id="refresh-players">
     Actualizar plantillas
   </button>
-
 </section>
 
-<!-- ================= PARTIDO ================= -->
+<!-- PARTIDO: SIMULACRO -->
 
 <section id="partido" class="page">
 
-  <div class="eyebrow">MATCH DAY</div>
-
-  <h2>PARTIDO OFICIAL</h2>
+  <div class="eyebrow">MATCH DAY · PRUEBA DE FUEGO</div>
+  <h2>PARTIDO · SIMULACRO</h2>
 
   <p>
-    El campo de juego está reservado para los
-    jugadores convocados.
+    Prueba del dado D20 y su temporizador.
+    Los resultados no cuentan para el campeonato.
   </p>
 
-  <div class="panel center">
+  <div class="grid">
 
-    <span class="pill">
-      PENDIENTE DE ACTIVACIÓN
-    </span>
+    <div class="panel center">
 
-    <div class="die">20</div>
+      <span class="test-label">
+        MODO SIMULACRO · NO OFICIAL
+      </span>
 
-    <h3>Dado oficial D20</h3>
+      <div class="die" id="match-die">20</div>
 
-    <p>
-      El dado oficial se habilitará cuando estén
-      configurados los permisos de los jugadores,
-      las convocatorias y el bloqueo de tres minutos
-      desde Supabase.
-    </p>
+      <button class="btn" id="match-roll">
+        Lanzar D20 · Simulacro
+      </button>
 
-    <button class="btn" disabled>
-      Lanzar dado oficial
-    </button>
+      <p id="match-cooldown" class="status" role="status">
+        Dado disponible
+      </p>
 
-    <p class="notice">
-      Por seguridad, todavía no se registran tiradas
-      oficiales. El ID de jugador no funciona como
-      contraseña.
-    </p>
+      <p id="match-result" class="status" role="status"></p>
+
+      <p class="notice">
+        Cada tirada bloquea este navegador durante
+        tres minutos. El simulacro no utiliza
+        IDs reales, convocatorias ni resultados
+        oficiales de Supabase.
+      </p>
+
+    </div>
+
+    <div class="panel">
+      <h3>Historial del simulacro</h3>
+      <p>Últimas tiradas realizadas en este navegador.</p>
+      <div id="match-history" class="log"></div>
+    </div>
 
   </div>
 
 </section>
 
-<!-- ================= ENTRENAMIENTO ================= -->
+<!-- ENTRENAMIENTO -->
 
 <section id="entrenamiento" class="page">
-
   <div class="eyebrow">PRACTICE CLUB</div>
-
   <h2>TRAINING CLUB</h2>
 
   <p>
@@ -1016,14 +914,9 @@ footer p {
   </p>
 
   <div class="panel center">
+    <span class="pill">DADO DE ENTRENAMIENTO · D20</span>
 
-    <span class="pill">
-      DADO DE ENTRENAMIENTO · D20
-    </span>
-
-    <div class="die training" id="training-die">
-      20
-    </div>
+    <div class="die training" id="training-die">20</div>
 
     <button class="btn" id="training-roll">
       Lanzar dado
@@ -1032,21 +925,16 @@ footer p {
     <p id="training-result" role="status">
       Practica tantas veces como quieras.
     </p>
-
   </div>
-
 </section>
 
-<!-- ================= ESTADÍSTICAS ================= -->
+<!-- ESTADÍSTICAS -->
 
 <section id="estadisticas" class="page">
-
   <div class="eyebrow">THE RECORD</div>
-
   <h2>RESULTADOS Y ESTADÍSTICAS</h2>
 
   <div class="grid">
-
     <article class="paper">
       <h3>Último partido</h3>
       <p>Sin resultados publicados.</p>
@@ -1061,21 +949,16 @@ footer p {
       <h3>Menciones honoríficas</h3>
       <p>Por anunciar.</p>
     </article>
-
   </div>
-
 </section>
 
-<!-- ================= ADMINISTRACIÓN ================= -->
+<!-- ADMINISTRACIÓN -->
 
 <section id="administracion" class="page">
-
   <div class="eyebrow">OFFICIAL MANAGEMENT</div>
-
   <h2>ADMINISTRACIÓN</h2>
 
   <div class="panel">
-
     <h3>Convocatorias y suplencias</h3>
 
     <p>
@@ -1088,9 +971,7 @@ footer p {
       La administración pública no puede modificar
       jugadores, partidos ni resultados.
     </p>
-
   </div>
-
 </section>
 
 </main>
@@ -1100,7 +981,7 @@ footer p {
   <p>Campeonato oficial de Quidditch</p>
 </footer>
 
-<!-- CONEXIÓN A SUPABASE -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1127,30 +1008,27 @@ footer p {
     hufflepuff: "Hufflepuff"
   };
 
-  // INICIAR SUPABASE
+  // CONEXIÓN A SUPABASE
 
   try {
-    if (window.supabase &&
-        typeof window.supabase.createClient === "function") {
-
+    if (
+      window.supabase &&
+      typeof window.supabase.createClient === "function"
+    ) {
       db = window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
       );
-
-      console.log("Supabase inicializado.");
-
     } else {
       throw new Error("Biblioteca Supabase no disponible.");
     }
   } catch (error) {
-    console.error(error);
+    console.error("Error de conexión:", error);
   }
 
   // NAVEGACIÓN
 
   function showPage(name) {
-
     document.querySelectorAll(".page").forEach(page => {
       page.classList.toggle(
         "active",
@@ -1184,10 +1062,9 @@ footer p {
     });
   });
 
-  // MOSTRAR PLANTILLAS
+  // PLANTILLAS DE JUGADORES
 
   function renderPlayers() {
-
     const panel = $("roster-panel");
     const list = $("players-list");
 
@@ -1222,18 +1099,14 @@ footer p {
       roster.length + " jugador(es) registrado(s)";
 
     if (roster.length === 0) {
-
       const message = document.createElement("p");
-
       message.textContent =
         "Todavía no hay jugadores registrados en esta casa.";
-
       list.appendChild(message);
       return;
     }
 
     roster.forEach(player => {
-
       const card = document.createElement("article");
       card.className = "player";
 
@@ -1258,10 +1131,7 @@ footer p {
     });
   }
 
-  // CONSULTAR JUGADORES REALES
-
   async function loadPlayers() {
-
     if (!db) {
       $("teams-status").textContent =
         "No se pudo conectar con Supabase.";
@@ -1274,14 +1144,11 @@ footer p {
     $("refresh-players").disabled = true;
 
     try {
-
       const { data, error } = await db.rpc(
         "get_public_players"
       );
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
       players = Array.isArray(data) ? data : [];
 
@@ -1292,33 +1159,21 @@ footer p {
       renderPlayers();
 
     } catch (error) {
-
-      console.error(
-        "Error al consultar jugadores:",
-        error
-      );
+      console.error("Error al consultar jugadores:", error);
 
       $("teams-status").textContent =
         "No se pudieron cargar los jugadores. " +
-        "Comprueba los permisos de la función " +
-        "get_public_players en Supabase.";
+        "Comprueba los permisos de get_public_players.";
 
     } finally {
-
       $("refresh-players").disabled = false;
     }
   }
 
-  // SELECCIONAR CASA
-
   document.querySelectorAll("[data-house]").forEach(button => {
-
     button.addEventListener("click", () => {
-
       selectedHouse = button.dataset.house;
-
       renderPlayers();
-
     });
   });
 
@@ -1327,16 +1182,12 @@ footer p {
     loadPlayers
   );
 
-  // DADO DE ENTRENAMIENTO
+  // GENERADOR D20
 
   function randomD20() {
-
     if (window.crypto && crypto.getRandomValues) {
-
       const values = new Uint32Array(1);
-
-      const limit =
-        Math.floor(4294967296 / 20) * 20;
+      const limit = Math.floor(4294967296 / 20) * 20;
 
       do {
         crypto.getRandomValues(values);
@@ -1348,25 +1199,152 @@ footer p {
     return Math.floor(Math.random() * 20) + 1;
   }
 
+  function animateDie(element, result) {
+    element.classList.remove("rolling");
+    void element.offsetWidth;
+    element.textContent = result;
+    element.classList.add("rolling");
+  }
+
+  // ENTRENAMIENTO SIN LÍMITES
+
   $("training-roll").addEventListener("click", () => {
-
-    const die = $("training-die");
-
     const result = randomD20();
 
-    die.classList.remove("rolling");
-
-    void die.offsetWidth;
-
-    die.textContent = result;
-
-    die.classList.add("rolling");
+    animateDie($("training-die"), result);
 
     $("training-result").textContent =
       "Resultado: " + result;
   });
 
-  // CARGAR DATOS AL INICIAR
+  // SIMULACRO DEL DADO DE PARTIDO
+  // NO REGISTRA RESULTADOS OFICIALES
+
+  const TEST_COOLDOWN = 3 * 60 * 1000;
+  const TEST_KEY = "hetne-match-test-v1";
+
+  let testStore = {
+    lastRoll: 0,
+    rolls: []
+  };
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(TEST_KEY));
+
+    if (saved && typeof saved === "object") {
+      testStore.lastRoll =
+        Number(saved.lastRoll) || 0;
+
+      testStore.rolls =
+        Array.isArray(saved.rolls)
+          ? saved.rolls
+          : [];
+    }
+  } catch (error) {
+    console.warn("No se recuperó el historial de prueba.");
+  }
+
+  function saveTestStore() {
+    try {
+      localStorage.setItem(
+        TEST_KEY,
+        JSON.stringify(testStore)
+      );
+    } catch (error) {
+      console.warn("No se guardó el simulacro.");
+    }
+  }
+
+  function displayTestHistory() {
+    const root = $("match-history");
+    root.replaceChildren();
+
+    if (testStore.rolls.length === 0) {
+      root.textContent = "Todavía no hay tiradas.";
+      return;
+    }
+
+    testStore.rolls
+      .slice(-25)
+      .reverse()
+      .forEach(roll => {
+        const entry = document.createElement("div");
+        entry.className = "entry";
+
+        const date = new Date(roll.at)
+          .toLocaleString("es-ES");
+
+        entry.textContent =
+          "D20: " + roll.value +
+          " · " + date +
+          " · SIMULACRO";
+
+        root.appendChild(entry);
+      });
+  }
+
+  function updateMatchCooldown() {
+    const remaining = Math.max(
+      0,
+      TEST_COOLDOWN -
+      (Date.now() - testStore.lastRoll)
+    );
+
+    const button = $("match-roll");
+    const status = $("match-cooldown");
+
+    button.disabled = remaining > 0;
+
+    if (remaining === 0) {
+      status.textContent = "Dado disponible";
+      return;
+    }
+
+    const totalSeconds = Math.ceil(remaining / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    status.textContent =
+      "Próxima tirada en " +
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2, "0");
+  }
+
+  $("match-roll").addEventListener("click", () => {
+    updateMatchCooldown();
+
+    if ($("match-roll").disabled) return;
+
+    const result = randomD20();
+    const now = Date.now();
+
+    testStore.lastRoll = now;
+
+    testStore.rolls.push({
+      value: result,
+      at: now
+    });
+
+    testStore.rolls = testStore.rolls.slice(-25);
+
+    saveTestStore();
+
+    animateDie($("match-die"), result);
+
+    $("match-result").textContent =
+      "Resultado del simulacro: " + result;
+
+    displayTestHistory();
+    updateMatchCooldown();
+  });
+
+  setInterval(updateMatchCooldown, 1000);
+
+  updateMatchCooldown();
+  displayTestHistory();
+
+  // CARGA INICIAL
 
   loadPlayers();
 
