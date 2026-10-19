@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -502,9 +503,35 @@ footer {
   <p>Campeonato oficial de Quidditch</p>
 </footer>
 
+<!-- SUPABASE: BIBLIOTECA OFICIAL -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 (() => {
   "use strict";
+
+  // CONEXIÓN A SUPABASE
+
+  const SUPABASE_URL =
+    "https://trlrxuyevuyiacbjbjob.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_tKAKjuJzCBkDoWP7RUoLgg_jhNlIfBy";
+
+  let db = null;
+
+  if (window.supabase &&
+      typeof window.supabase.createClient === "function") {
+    db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+    console.log("Cliente Supabase inicializado.");
+  } else {
+    console.warn(
+      "No se pudo cargar la biblioteca de Supabase."
+    );
+  }
 
   const $ = id => document.getElementById(id);
 
@@ -512,7 +539,10 @@ footer {
 
   function showPage(name) {
     document.querySelectorAll(".page").forEach(section => {
-      section.classList.toggle("active", section.id === name);
+      section.classList.toggle(
+        "active",
+        section.id === name
+      );
     });
 
     document.querySelectorAll("[data-page]").forEach(button => {
@@ -559,9 +589,14 @@ footer {
 
   function save() {
     try {
-      localStorage.setItem(KEY, JSON.stringify(store));
+      localStorage.setItem(
+        KEY,
+        JSON.stringify(store)
+      );
     } catch (error) {
-      console.warn("No se pudieron guardar los datos.");
+      console.warn(
+        "No se pudieron guardar los datos."
+      );
     }
   }
 
@@ -570,7 +605,8 @@ footer {
   function randomD20() {
     if (window.crypto && crypto.getRandomValues) {
       const values = new Uint32Array(1);
-      const limit = Math.floor(4294967296 / 20) * 20;
+      const limit =
+        Math.floor(4294967296 / 20) * 20;
 
       do {
         crypto.getRandomValues(values);
@@ -615,7 +651,8 @@ footer {
     root.replaceChildren();
 
     if (store.rolls.length === 0) {
-      root.textContent = "Todavía no hay tiradas.";
+      root.textContent =
+        "Todavía no hay tiradas.";
       return;
     }
 
@@ -623,7 +660,9 @@ footer {
       const entry = document.createElement("div");
       entry.className = "entry";
 
-      const date = new Date(roll.at).toLocaleString("es-ES");
+      const date = new Date(
+        roll.at
+      ).toLocaleString("es-ES");
 
       entry.textContent =
         "D20: " + roll.value +
@@ -651,7 +690,9 @@ footer {
 
     // SESIÓN DE UNA HORA
     if (now - store.sessionStart >= 3600000) {
-      logout("La sesión de prueba ha caducado.");
+      logout(
+        "La sesión de prueba ha caducado."
+      );
       return;
     }
 
@@ -664,9 +705,14 @@ footer {
     $("match-roll").disabled = remaining > 0;
 
     if (remaining > 0) {
-      const totalSeconds = Math.ceil(remaining / 1000);
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
+      const totalSeconds =
+        Math.ceil(remaining / 1000);
+
+      const minutes =
+        Math.floor(totalSeconds / 60);
+
+      const seconds =
+        totalSeconds % 60;
 
       $("cooldown").textContent =
         "Próxima tirada en " +
@@ -674,12 +720,14 @@ footer {
         ":" +
         String(seconds).padStart(2, "0");
     } else {
-      $("cooldown").textContent = "Dado disponible";
+      $("cooldown").textContent =
+        "Dado disponible";
     }
   }
 
   $("enter-match").addEventListener("click", () => {
-    const id = $("player-id").value.trim().toLowerCase();
+    const id = $("player-id")
+      .value.trim().toLowerCase();
 
     if (id !== "hhh") {
       $("login-status").textContent =
@@ -782,7 +830,8 @@ footer {
       row.className = "admin-row";
 
       const label = document.createElement("span");
-      label.textContent = name + " · " + position;
+      label.textContent =
+        name + " · " + position;
 
       const select = document.createElement("select");
 
@@ -791,15 +840,22 @@ footer {
         ["suplente", "Suplente"],
         ["fuera", "No convocado"]
       ].forEach(([value, text]) => {
-        const option = document.createElement("option");
+        const option =
+          document.createElement("option");
+
         option.value = value;
         option.textContent = text;
+
         select.appendChild(option);
       });
 
-      select.value = index < 7 ? "titular" : "suplente";
+      select.value =
+        index < 7 ? "titular" : "suplente";
 
-      select.addEventListener("change", validateRoster);
+      select.addEventListener(
+        "change",
+        validateRoster
+      );
 
       row.append(label, select);
       root.appendChild(row);
@@ -808,7 +864,10 @@ footer {
     validateRoster();
   }
 
-  $("reset-roster").addEventListener("click", drawRoster);
+  $("reset-roster").addEventListener(
+    "click",
+    drawRoster
+  );
 
   drawRoster();
 
